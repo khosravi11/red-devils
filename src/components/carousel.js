@@ -11,6 +11,7 @@ const PlayerCarousel = ({ players }) => {
   });
 
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  console.log(viewportWidth)
 
   const handleResize = useCallback(() => {
     setViewportWidth(window.innerWidth);
