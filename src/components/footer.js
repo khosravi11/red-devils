@@ -1,0 +1,48 @@
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons';
+
+const Footer = () => {
+  return (
+    <footer id="footer" className="footer bg-dark text-white">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-4 mb-3 text-center">
+            <h5  className="section-title">Contact Us</h5>
+            <ul className="list-unstyled">
+              <li><strong>Address:</strong> 123 Main Street, City, Country</li>
+              <li><strong>Phone:</strong> (123) 456-7890</li>
+              <li><strong>Email:</strong> contact@example.com</li>
+            </ul>
+          </div>
+          <div className="col-md-4 mb-3 text-center">
+            <h5  className="section-title">Follow Us</h5>
+            <div className="social-media-icons">
+              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faFacebookF} size="lg" />
+              </a>
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faInstagram} size="lg" />
+              </a>
+            </div>
+          </div>
+          <div className="col-md-4 mb-3 text-center">
+            <h5  className="section-title">Quick Links</h5>
+            <ul className="list-unstyled">
+              <li><a href="#home" className="text-white">Home</a></li>
+              <li><a href="#team" className="text-white">Our Team</a></li>
+              <li><a href="#about" className="text-white">About</a></li>
+              <li><a href="#register" className="text-white">Register</a></li>
+              <li><a href="#footer" className="text-white">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="text-center mt-4">
+          <p className="mb-0">&copy; {new Date().getFullYear()} Your Company Name. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
