@@ -18,10 +18,10 @@ const Footer = () => {
           <div className="col-md-4 mb-3 text-center">
             <h5  className="section-title">Follow Us</h5>
             <div className="social-media-icons">
-              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.facebook.com/p/Berkeley-Red-Devils-AAU-Team-100057474915829/" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faFacebookF} size="lg" />
               </a>
-              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/berkeleyreddevilsbasketball/?hl=en" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faInstagram} size="lg" />
               </a>
             </div>
