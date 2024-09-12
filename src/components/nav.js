@@ -32,10 +32,10 @@ const NavBar = () => {
           </ul>
         </div>
         <div className="d-flex ms-lg-auto mt-3 mt-lg-0 fs-4">
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="nav-link text-light px-2">
+            <a href="https://www.facebook.com/p/Berkeley-Red-Devils-AAU-Team-100057474915829/" target="_blank" rel="noopener noreferrer" className="nav-link text-light px-2">
               <FontAwesomeIcon icon={faFacebookF} size="lg" />
             </a>
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="nav-link text-light px-2">
+            <a href="https://www.instagram.com/berkeleyreddevilsbasketball/?hl=en" target="_blank" rel="noopener noreferrer" className="nav-link text-light px-2">
               <FontAwesomeIcon icon={faInstagram} size="lg" />
             </a>
           </div>
