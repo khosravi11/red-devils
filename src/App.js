@@ -8,7 +8,6 @@ import Team from './components/team';
 import About from './components/about';
 import Register from './components/register';
 import Footer from './components/footer';
-import Call from './components/call';
 
 function App() {
   return (
@@ -21,7 +20,6 @@ function App() {
       <About />
       <Register />
       <Footer />
-      <Call />
     </div>
   );
 }

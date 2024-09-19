@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="col-md-4 mb-3 text-center">
             <h5  className="section-title">Contact Us</h5>
             <ul className="list-unstyled">
-              <li className='fs-3'><strong>Phone:</strong> (510) 365-8568</li>
+              <li className='fs-3'><strong>Phone:</strong> <a href='tel:+15103658568'>(510) 365-8568</a></li>
             </ul>
           </div>          
           <div className="col-md-4 mb-3 text-center">

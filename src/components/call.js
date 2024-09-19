@@ -24,7 +24,7 @@ const Call = () => {
     <>
       {isMobile ? (
         // On mobile, it's a call button
-        <a href="tel:+1234567890" className="hovering-phone-button">
+        <a href="tel:+15103658568" className="hovering-phone-button">
           <FontAwesomeIcon icon={faPhone} size="2x" />
         </a>
       ) : (
