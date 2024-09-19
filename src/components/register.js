@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -7,6 +8,9 @@ const Register = () => {
     message: '',
   });
 
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -14,63 +18,82 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form data submitted:', formData);
+
+    emailjs.send(
+      'service_mkubqr9',
+      'template_20cnhas',
+      formData,
+      'ZRnaxOFhnzpDdbvbK'
+    )
+    .then((response) => {
+      setSuccessMessage('Your message has been sent successfully! One of our representatives will contact you soon.');
+      setErrorMessage('');
+      setFormData({ name: '', email: '', message: '' }); 
+    })
+    .catch((error) => {
+      setErrorMessage('Oops! Something went wrong. Please try again later.');
+      setSuccessMessage('');
+    });
+
+    
   };
 
   return (
     <div id='register' className="register-container text-white py-4">
-        <div className='container'>
-          
-        <h2 className="section-title">Register</h2>
-      <div className="row align-items-center">
-        <div className="col-md-6">
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label htmlFor="name" className="form-label">Name</label>
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">Email</label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="message" className="form-label">Message</label>
-              <textarea
-                className="form-control"
-                id="message"
-                name="message"
-                rows="4"
-                value={formData.message}
-                onChange={handleChange}
-                required
-              ></textarea>
-            </div>
-            <button type="submit" className="btn btn-primary bg-black">Submit</button>
-          </form>
-        </div>
-        
-        <div className="col-md-6 d-flex justify-content-end">
-          <img src="/images/red-devils-logo.png" alt="Red Devils" className="img-fluid" />
+      <div className='container'>
+        <h2 className="section-title">Join</h2>
+
+        <div className="row align-items-center">
+          <div className="col-md-6">
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <label htmlFor="name" className="form-label">Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">Email</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="message" className="form-label">Message</label>
+                <textarea
+                  className="form-control"
+                  id="message"
+                  name="message"
+                  rows="4"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" className="btn btn-primary bg-black">Submit</button>
+            </form>
+
+            {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>}
+            {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
+          </div>
+
+          <div className="col-md-6 d-flex justify-content-end">
+            <img src="/images/red-devils-logo.png" alt="Red Devils" className="img-fluid" />
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };
