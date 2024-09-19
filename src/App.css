@@ -213,3 +213,38 @@ body {
 .footer .social-media-icons a:hover {
   color: #cccccc;
 }
+.next-match {
+  border-radius: 8px;
+  padding: 30px;
+  color: #fff;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.next-match .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.next-match h4 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.next-match p {
+  font-size: 1.25rem;
+  z-index: 2;
+}
+
+.next-match .btn {
+  z-index: 2;
+}
