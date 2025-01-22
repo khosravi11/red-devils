@@ -7,6 +7,9 @@ body {
   text-transform: uppercase;
 }
 
+.affiliate-logo{
+  width: 190px;
+}
 /* Embla Carousel Styles */
 .embla {
   position: relative;
