@@ -153,23 +153,21 @@ import React from 'react';
 
 const Team = () => {
   return (
-    <div id='team' className='bg-black py-4'>
-    <div className="container">
-    <h2 className="section-title text-center text-white">Rosters</h2>
-      <h2 className='text-center my-5 text-white'>Coming Soon...</h2>
-      {/* <div className="carousel-section text-white">
-        <h2 className="section-title text-center">Team 1</h2>
-        <Carousel players={players1} />
+    <div id='team' className='register-container py-4'>
+      <div className="container">
+        <h2 className='section-title text-white'>Affiliates</h2>
+      <div className="row text-center">
+      <div className="col-md-4">
+        <img src="/images/red-devils-logo.png" className="img-fluid rounded affiliate-logo" alt="Evolve Logo"/>
       </div>
-      <div className="carousel-section text-white">
-        <h2 className="section-title text-center">Team 2</h2>
-        <Carousel players={players2} />
+      <div class="col-md-4">
+        <img src="/images/evolve.png" className="img-fluid rounded affiliate-logo" alt="Adidas Logo"/>
       </div>
-      <div className="carousel-section text-white">
-        <h2 className="section-title text-center">Team 3</h2>
-        <Carousel players={players3} />
-      </div> */}
+      <div class="col-md-4">
+        <img src="/images/adidas.png" className="img-fluid rounded affiliate-logo" alt="Red Devils"/>
+      </div>
     </div>
+      </div>
     </div>
   );
 };
