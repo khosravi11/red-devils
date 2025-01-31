@@ -6,6 +6,11 @@ body {
   font-family: 'Anton', sans-serif;
   text-transform: uppercase;
 }
+.video-js {
+  width: 100% !important;
+  height: 400px !important;
+  background-color: black;
+}
 
 .affiliate-logo{
   width: 190px;

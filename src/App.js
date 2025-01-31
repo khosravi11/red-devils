@@ -8,6 +8,7 @@ import Team from './components/team';
 import About from './components/about';
 import Register from './components/register';
 import Footer from './components/footer';
+import Videos from './components/videos'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Hero />
       </div>  
       <Team />
+      <Videos/>
       <About />
       <Register />
       <Footer />
