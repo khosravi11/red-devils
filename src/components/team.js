@@ -160,10 +160,10 @@ const Team = () => {
       <div className="col-md-4">
         <img src="/images/red-devils-logo.png" className="img-fluid rounded affiliate-logo" alt="Evolve Logo"/>
       </div>
-      <div class="col-md-4">
+      <div className="col-md-4">
         <img src="/images/evolve.png" className="img-fluid rounded affiliate-logo" alt="Adidas Logo"/>
       </div>
-      <div class="col-md-4">
+      <div className="col-md-4">
         <img src="/images/adidas.png" className="img-fluid rounded affiliate-logo" alt="Red Devils"/>
       </div>
     </div>

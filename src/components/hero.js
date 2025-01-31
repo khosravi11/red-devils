@@ -6,7 +6,8 @@ const Hero = () => {
       <div className='w-100'>
         <h1 className="hero-title w-100">Berkeley RED DEVILS</h1>
         <p className="hero-subtitle w-100">LOOK UP, GET UP & NEVER GIVE UP</p>
-        <div className='w-100'>
+        <div className=''>
+          <a className="btn btn-primary btn-lg mt-4 fs-2 px-4" href="tel:510-365-8568">Call Coach Scott<br/>(510) 365-8568</a><br/><br/>          
           <a className="btn btn-primary btn-lg mt-4 fs-2 px-4" href="#register">Join The Red Devils</a>
         </div>
       </div>
