@@ -23,7 +23,7 @@ const VideoPlaylist = () => {
 
 
   return (
-    <section className="bg-black">
+    <section id="videos" className="bg-black">
     <div className="container py-4 bg">      
       <h2 className='section-title text-white'>Videos</h2>
       <div className="row">

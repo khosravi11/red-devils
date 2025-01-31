@@ -17,7 +17,8 @@ const Footer = () => {
             <h5  className="section-title">Quick Links</h5>
             <ul className="list-unstyled">
               <li><a href="#home" className="text-white">Home</a></li>
-              <li><a href="#team" className="text-white">Our Team</a></li>
+              <li><a href="#team" className="text-white">Affiliates</a></li>
+              <li><a href="#team" className="text-white">Videos</a></li>
               <li><a href="#about" className="text-white">About</a></li>
               <li><a href="#register" className="text-white">Register</a></li>
               <li><a href="#footer" className="text-white">Contact</a></li>
