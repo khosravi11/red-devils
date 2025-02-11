@@ -22,7 +22,7 @@ const Register = () => {
 
     emailjs.send(
       'service_mkubqr9',
-      'template_20cnhas',
+      'template_l178rz9',
       formData,
       'ZRnaxOFhnzpDdbvbK'
     )
