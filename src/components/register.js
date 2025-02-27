@@ -10,42 +10,36 @@ const Register = () => {
 
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false); // New state for form visibility
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    emailjs.send(
-      'service_mkubqr9',
-      'template_l178rz9',
-      formData,
-      'ZRnaxOFhnzpDdbvbK'
-    )
-    .then((response) => {
-      setSuccessMessage('Your message has been sent successfully! One of our representatives will contact you soon.');
-      setErrorMessage('');
-      setFormData({ name: '', email: '', message: '' });
-      setIsSubmitted(true); // Hide the form after submission
-    })
-    .catch((error) => {
-      setErrorMessage('Oops! Something went wrong. Please try again later.');
-      setSuccessMessage('');
-    });
+    emailjs
+      .send('service_mkubqr9', 'template_l178rz9', formData, 'ZRnaxOFhnzpDdbvbK')
+      .then(() => {
+        setSuccessMessage('Your message has been sent successfully! One of our representatives will contact you soon.');
+        setErrorMessage('');
+        setFormData({ name: '', email: '', message: '' });
+        setIsSubmitted(true);
+      })
+      .catch(() => {
+        setErrorMessage('Oops! Something went wrong. Please try again later.');
+        setSuccessMessage('');
+      });
   };
 
   return (
-    <div id='register' className="register-container text-white py-4">
-      <div className='container'>
+    <section id="register" className="register-container text-white py-4">
+      <div className="container">
         <h2 className="section-title">Join</h2>
-
         <div className="row align-items-center">
           <div className="col-md-6">
-            {/* Conditionally render the form based on isSubmitted */}
             {!isSubmitted ? (
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
@@ -82,7 +76,7 @@ const Register = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                  ></textarea>
+                  />
                 </div>
                 <button type="submit" className="btn btn-primary bg-black">Submit</button>
               </form>
@@ -94,11 +88,11 @@ const Register = () => {
           </div>
 
           <div className="col-md-6 d-flex justify-content-end">
-            <img src="/images/red-devils-logo.png" alt="Red Devils" className="img-fluid" />
+            <img src="/images/RedDevilsLogo.png" alt="Red Devils" className="img-fluid" />
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
