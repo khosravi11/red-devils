@@ -10,11 +10,13 @@ import Register from './components/register';
 import Footer from './components/footer';
 import Videos from './components/videos'
 import CallCoachButton from './components/call';
+import TryoutBanner from './components/tryout';
 
 function App() {
   return (
     <div>
       <Nav />
+      <TryoutBanner/>
       <Hero />
       <Affiliates />
       <Videos/>
