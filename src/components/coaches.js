@@ -3,7 +3,7 @@ import React from "react";
 
 const coaches = [
   {
-    name: "Antonio Scott",
+    name: "Antonio Scott - President",
     image: "/images/coachscott.png", // Replace with actual image path
     bio: `Antonio Scott brings deep expertise in sports management and player development, 
           with experience across the collegiate, international, and NBA levels. As President, 
@@ -12,7 +12,7 @@ const coaches = [
           through his roles in elite scouting and sports marketing.`,
   },
   {
-    name: "Coach Scooter Williams",
+    name: "Coach Scooter Williams - Coach and Skills Trainer",
     image: "/images/coachscooter.png", // Replace with actual image path
     bio: `Coach Scooter Williams is the founder of Scoot Work™ and a respected player development coach 
           known for his intense, purpose driven training style. With over a decade of experience coaching 
@@ -20,7 +20,7 @@ const coaches = [
           approach that emphasizes work ethic, toughness, and accountability.`,
   },
   {
-    name: "Aaron Harmon",
+    name: "Aaron Harmon - Middle School Coach",
     image: "https://placehold.co/1000x743?text=Coach+Aaron", // Replace with actual image path
     bio: `Aaron Harmon brings nearly 20 years of coaching and training experience, with a lifelong passion 
           for developing young athletes. A former standout at Prospect High School in San Jose, he led his 
