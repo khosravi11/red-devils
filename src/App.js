@@ -11,6 +11,7 @@ import Footer from './components/footer';
 import Videos from './components/videos'
 import CallCoachButton from './components/call';
 import TryoutBanner from './components/tryout';
+import Coaches from './components/coaches';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Hero />
       <Affiliates />
       <Videos/>
+      <Coaches/>
       <About />
       <Register />
       <Footer />
