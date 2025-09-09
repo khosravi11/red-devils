@@ -30,6 +30,7 @@ const NavBar = () => {
               { href: "#home", label: "Home" },
               { href: "#affiliates", label: "Affiliates" },
               { href: "#videos", label: "Videos" },
+              { href: "#coaches", label: "Staff" },
               { href: "#about", label: "About" },
               { href: "#register", label: "Register" },
               { href: "#footer", label: "Contact" },
