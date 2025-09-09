@@ -37,7 +37,7 @@ const Register = () => {
   return (
     <section id="register" className="register-container text-white py-4">
       <div className="container">
-        <h2 className="section-title">Join</h2>
+        <h2 className="section-title">Register Today</h2>
         <div className="row align-items-center">
           <div className="col-md-6">
             {!isSubmitted ? (
