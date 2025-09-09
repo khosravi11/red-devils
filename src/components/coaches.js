@@ -6,8 +6,8 @@ const coaches = [
     name: "Antonio Scott",
     image: "/images/coachscott.png", // Replace with actual image path
     bio: `Antonio Scott brings deep expertise in sports management and player development, 
-          with experience across the collegiate, international, and NBA levels. As Vice President, 
-          he leads Evolve’s AAU basketball operations and athlete representation efforts. Antonio has 
+          with experience across the collegiate, international, and NBA levels. As President, 
+          he leads Red Devils AAU basketball operations and athlete representation efforts. Antonio has 
           worked alongside NBA coaches and represented top-tier talent, including NBA and NFL athletes, 
           through his roles in elite scouting and sports marketing.`,
   },
