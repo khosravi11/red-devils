@@ -28,6 +28,7 @@ body {
   font-family: var(--font-primary);
   text-transform: uppercase;
   line-height: 1.5;
+  font-size: 18px;
   color: var(--color-gray-text);
 }
 

@@ -8,22 +8,21 @@ import Affiliates from './components/affiliates';
 import About from './components/about';
 import Register from './components/register';
 import Footer from './components/footer';
-import Videos from './components/videos'
 import CallCoachButton from './components/call';
 import TryoutBanner from './components/tryout';
 import Coaches from './components/coaches';
-
+import ImageCarousel from './components/imageCarousel';
 function App() {
   return (
     <div>
       <Nav />
       <TryoutBanner/>
       <Hero />
-      <Affiliates />
-      <Videos/>
+      <ImageCarousel/>
       <Coaches/>
       <About />
       <Register />
+      <Affiliates />  
       <Footer />
       <CallCoachButton/>
     </div>
