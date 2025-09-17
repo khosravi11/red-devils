@@ -116,7 +116,7 @@ const Register = () => {
                 style={{ maxWidth: '250px' }}
               />
               <h4 className="fw-bold">Red Devils Athletics</h4>
-              <p className="mb-1">Building Champions On and Off the Field</p>
+              <p className="mb-1">Building Champions On and Off the Court</p>
               <a href="tel:+15103658568" className="btn btn-outline-light mt-3">
                 Call Coach Scott
               </a>
