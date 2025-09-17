@@ -19,9 +19,9 @@ function App() {
       <TryoutBanner/>
       <Hero />
       <ImageCarousel/>
-      <Coaches/>
       <About />
       <Register />
+      <Coaches/>
       <Affiliates />  
       <Footer />
       <CallCoachButton/>
