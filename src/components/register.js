@@ -23,7 +23,9 @@ const Register = () => {
     emailjs
       .send('service_mkubqr9', 'template_l178rz9', formData, 'ZRnaxOFhnzpDdbvbK')
       .then(() => {
-        setSuccessMessage('Your message has been sent successfully! One of our representatives will contact you soon.');
+        setSuccessMessage(
+          'Thank you for reaching out! Your message has been sent successfully. One of our representatives will contact you soon.'
+        );
         setErrorMessage('');
         setFormData({ name: '', email: '', message: '' });
         setIsSubmitted(true);
@@ -35,60 +37,90 @@ const Register = () => {
   };
 
   return (
-    <section id="register" className="register-container text-white py-4">
+    <section id="register" className="register-container text-white py-5 bg-dark">
       <div className="container">
-        <h2 className="section-title">Register Today</h2>
-        <div className="row align-items-center">
-          <div className="col-md-6">
-            {!isSubmitted ? (
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="name" className="form-label">Name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label">Email</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="message" className="form-label">Message</label>
-                  <textarea
-                    className="form-control"
-                    id="message"
-                    name="message"
-                    rows="4"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <button type="submit" className="btn btn-primary bg-black">Submit</button>
-              </form>
-            ) : (
-              <div className="alert alert-success mt-3">{successMessage}</div>
-            )}
+        <h2 className="section-title text-center mb-4">Contact Us</h2>
+        <p className="text-center mb-5">
+          Have questions or want to register with us? Fill out the form below and one of our
+          team members will get back to you shortly.  
+          You can also reach Coach Scott directly at{' '}
+          <a href="tel:+15103658568" className="text-info fw-bold">
+            (510) 365-8568
+          </a>.
+        </p>
 
-            {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
+        <div className="row align-items-start">
+          {/* Contact Form */}
+          <div className="col-md-6">
+            <div className="card bg-secondary text-white p-4 shadow-lg rounded-3">
+              {!isSubmitted ? (
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-3">
+                    <label htmlFor="name" className="form-label">Name</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="mb-3">
+                    <label htmlFor="email" className="form-label">Email</label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="mb-3">
+                    <label htmlFor="message" className="form-label">Message</label>
+                    <textarea
+                      className="form-control"
+                      id="message"
+                      name="message"
+                      rows="4"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
+                  <button type="submit" className="btn btn-light w-100 fw-bold">
+                    Send Message
+                  </button>
+                </form>
+              ) : (
+                <div className="alert alert-success mt-3">{successMessage}</div>
+              )}
+
+              {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
+            </div>
           </div>
 
-          <div className="col-md-6 d-flex justify-content-end">
-            <img src="/images/RedDevilsLogo.png" alt="Red Devils" className="img-fluid" />
+          {/* Logo / Branding */}
+          <div className="col-md-6 d-flex justify-content-center align-items-center mt-4 mt-md-0">
+            <div className="text-center">
+              <img
+                src="/images/RedDevilsLogo.png"
+                alt="Red Devils"
+                className="img-fluid mb-3"
+                style={{ maxWidth: '250px' }}
+              />
+              <h4 className="fw-bold">Red Devils Athletics</h4>
+              <p className="mb-1">Building Champions On and Off the Field</p>
+              <a href="tel:+15103658568" className="btn btn-outline-light mt-3">
+                Call Coach Scott
+              </a>
+            </div>
           </div>
         </div>
       </div>

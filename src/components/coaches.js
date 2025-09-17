@@ -20,7 +20,7 @@ const coaches = [
           approach that emphasizes work ethic, toughness, and accountability.`,
   },
   {
-    name: "Aaron Harmon - Middle School Coach",
+    name: "Aaron Harmon - Coach and Skills Trainer",
     image: "https://placehold.co/1000x743?text=Coach+Aaron", // Replace with actual image path
     bio: `Aaron Harmon brings nearly 20 years of coaching and training experience, with a lifelong passion 
           for developing young athletes. A former standout at Prospect High School in San Jose, he led his 

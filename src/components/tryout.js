@@ -9,9 +9,9 @@ const TryoutBanner = () => {
       style={{ backgroundImage: "url('/assets/images/registration-bg.jpg')", backgroundSize: 'cover' }}
     >
       <div className="container">
-        <h2 className="display-4 mb-3">Registration Still Open</h2>
+        <h2 className="display-4 mb-3">Fall 2025 Registration Still Open</h2>
         <p className="lead mb-4">
-          Contact us today to sign up and secure your spot!
+          Contact us today to sign up and secure your spot
         </p>
         <a
           href="#register"

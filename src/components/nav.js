@@ -28,12 +28,10 @@ const NavBar = () => {
           <ul className="navbar-nav py-2 mx-auto flex-column flex-lg-row fs-2 text-center">
             {[
               { href: "#home", label: "Home" },
-              { href: "#affiliates", label: "Affiliates" },
-              { href: "#videos", label: "Videos" },
-              { href: "#coaches", label: "Staff" },
               { href: "#about", label: "About" },
-              { href: "#register", label: "Register" },
               { href: "#footer", label: "Contact" },
+              { href: "#coaches", label: "Coaching Staff" },
+              { href: "#affiliates", label: "Partners" },
             ].map((item, index) => (
               <li className="nav-item" key={index}>
                 <a className="nav-link" href={item.href}>
