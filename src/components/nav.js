@@ -29,11 +29,11 @@ const NavBar = () => {
             {[
               { href: "#home", label: "Home" },
               { href: "#about", label: "About" },
-              { href: "#footer", label: "Contact" },
               { href: "#coaches", label: "Coaching Staff" },
+              { href: "#footer", label: "Contact" },
               { href: "#affiliates", label: "Partners" },
             ].map((item, index) => (
-              <li className="nav-item" key={index}>
+              <li className="nav-item me-2" key={index}>
                 <a className="nav-link" href={item.href}>
                   {item.label}
                 </a>
