@@ -32,7 +32,7 @@ const coaches = [
           as on-court success.`,
   },
   {
-    name: "Mahlik Smith",
+    name: "Mahlik Smith - Coach",
     image: "https://placehold.co/1000x743?text=Coach+Mahlik", // Replace with actual image path
     bio: `Mahlik Smith is a dedicated head coach with expertise in player development, 
           practice facilitation, tournament hosting, recruitment, and team leadership. 
