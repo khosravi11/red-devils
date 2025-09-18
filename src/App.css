@@ -26,10 +26,17 @@
 
 body {
   font-family: var(--font-primary);
-  text-transform: uppercase;
   line-height: 1.5;
-  font-size: 18px;
+  font-size: 24px;
   color: var(--color-gray-text);
+}
+
+h1,h2,h3,h4,h5,h6 {
+  text-transform: uppercase;
+}
+
+.btn {
+  text-transform: uppercase;
 }
 
 /* Video Containers */
@@ -145,7 +152,7 @@ body {
 }
 
 .section-text {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: var(--color-gray-text);
   line-height: 1.6;
   margin-bottom: 2rem;

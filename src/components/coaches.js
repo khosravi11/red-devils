@@ -21,7 +21,7 @@ const coaches = [
   },
   {
     name: "Aaron Harmon - Coach and Skills Trainer",
-    image: "https://placehold.co/1000x743?text=Coach+Aaron", // Replace with actual image path
+    image: "/images/coachaaron.png", // Replace with actual image path
     bio: `Aaron Harmon brings nearly 20 years of coaching and training experience, with a lifelong passion 
           for developing young athletes. A former standout at Prospect High School in San Jose, he led his 
           team to a league championship, earned Co-MVP honors, and was a First Team All-League selection. 
@@ -52,7 +52,7 @@ const CoachesSection = () => {
       style={{ backgroundColor: "#b30000", color: "#fff" }}
     >
       <div className="container">
-        <h2 className="text-center mb-5">Meet Our Coaches</h2>
+        <h2 className="section-title text-center mb-4">Meet Our Coaches</h2>
         {coaches.map((coach, index) => (
           <div
             key={index}

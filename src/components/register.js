@@ -41,12 +41,7 @@ const Register = () => {
       <div className="container">
         <h2 className="section-title text-center mb-4">Contact Us</h2>
         <p className="text-center mb-5">
-          Have questions or want to register with us? Fill out the form below and one of our
-          team members will get back to you shortly.  
-          You can also reach Coach Scott directly at{' '}
-          <a href="tel:+15103658568" className="text-info fw-bold">
-            (510) 365-8568
-          </a>.
+          Have questions or want to learn more about our program? Call Coach Scott at <a  href="tel:510-365-8568">510-365-8568 </a> or complete the form below and one of our team members will get back to you.
         </p>
 
         <div className="row align-items-start">
@@ -95,7 +90,7 @@ const Register = () => {
                   </div>
 
                   <button type="submit" className="btn btn-light w-100 fw-bold">
-                    Send Message
+                    Submit
                   </button>
                 </form>
               ) : (
