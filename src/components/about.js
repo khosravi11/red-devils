@@ -6,7 +6,7 @@ const AboutUs = () => {
       <div className="container">
         
         <h2 className="section-title text-center mb-4">About the Red Devils</h2>
-        <div className="row align-items-center g-5">
+        <div className="row align-items-center">
           {/* Image Section */}
           <div className="col-md-6 d-flex justify-content-center">
             <div className="position-relative">

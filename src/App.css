@@ -14,10 +14,14 @@
   --btn-radius: 50px;
   --control-radius: 4px;
   --btn-padding: 15px 30px;
+
+  /* Transitions */
   --transition-fast: 0.3s;
 }
 
-/* Reset & Globals */
+/* =========================
+   Global Reset & Base
+   ========================= */
 * {
   margin: 0;
   padding: 0;
@@ -26,20 +30,94 @@
 
 body {
   font-family: var(--font-primary);
-  line-height: 1.5;
   font-size: 24px;
+  line-height: 1.5;
   color: var(--color-gray-text);
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
 }
 
 .btn {
   text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
 }
 
-/* Video Containers */
+/* =========================
+   Navigation
+   ========================= */
+.navbar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+  background: transparent;
+}
+
+.logo {
+  width: 135px;
+  height: auto;
+}
+
+/* =========================
+   Hero Section
+   ========================= */
+.banner-image {
+  width: 100%;
+  height: 600px;
+  background: url('/public/images/RedDevilsHeroImage.jpg') no-repeat center top;
+  background-size: cover;
+}
+
+.hero-title {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.bg-red {
+  background-color: var(--color-dark-maroon);
+}
+
+/* =========================
+   Buttons
+   ========================= */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--control-radius);
+  padding: 0.75rem 1.5rem;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* =========================
+   Sections
+   ========================= */
+.section-title {
+  font-size: 4rem;
+  margin-bottom: 1.25rem;
+}
+
+.section-text {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: var(--color-gray-text);
+}
+
+/* =========================
+   Media & Videos
+   ========================= */
 .video-js,
 .portrait-video {
   width: 100%;
@@ -56,109 +134,9 @@ h1,h2,h3,h4,h5,h6 {
   object-fit: contain;
 }
 
-/* Call-to-Action Coach Button */
-.call-coach-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: var(--color-gray-text);
-  color: var(--color-white);
-  border: none;
-  border-radius: var(--btn-radius);
-  padding: var(--btn-padding);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: background-color var(--transition-fast);
-}
-
-.call-coach-btn:hover {
-  background-color: var(--color-dark-maroon);
-}
-
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-  #footer {
-    padding-bottom: 100px !important;
-  }
-
-  .call-coach-btn {
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100vw;
-    border-radius: 0;
-    text-align: center;
-    padding: 15px;
-  }
-}
-
-/* Navigation */
-.navbar {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 9999;
-  background: transparent;
-}
-
-.logo {
-  width: 135px;
-  height: auto;
-}
-
-/* Hero Section */
-.banner-image {
-  width: 100%;
-  height: 600px;
-  background: url('/public/images/RedDevilsHeroImage.jpg') no-repeat center top;
-  background-size: cover;
-}
-
-.bg-red {
-  background-color: var(--color-dark-maroon);
-}
-
-.hero-title {
-  font-size: 4rem;
-  margin-bottom: 1rem;
-}
-
-.hero-subtitle {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-/* Buttons */
-.btn-primary {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  border: none;
-  border-radius: var(--control-radius);
-  padding: 0.75rem 1.5rem;
-  cursor: pointer;
-  transition: background-color var(--transition-fast);
-}
-
-.btn-primary:hover {
-  background-color: var(--color-primary-hover);
-}
-
-/* Sections */
-.section-title {
-  font-size: 4rem;
-  margin-bottom: 1.25rem;
-}
-
-.section-text {
-  font-size: 1.3rem;
-  color: var(--color-gray-text);
-  line-height: 1.6;
-  margin-bottom: 2rem;
-}
-
-/* Coach Image */
+/* =========================
+   Coach Image
+   ========================= */
 .coach-image {
   width: 100%;
   max-width: 400px;
@@ -167,7 +145,9 @@ h1,h2,h3,h4,h5,h6 {
   display: block;
 }
 
-/* Forms & Registration */
+/* =========================
+   Forms & Registration
+   ========================= */
 .register-container {
   background-color: var(--color-primary);
   padding: 2rem;
@@ -187,7 +167,9 @@ h1,h2,h3,h4,h5,h6 {
   margin-bottom: 1rem;
 }
 
-/* Footer */
+/* =========================
+   Footer
+   ========================= */
 .footer {
   padding: 2.5rem 0;
   background-color: var(--color-footer-bg);
@@ -225,4 +207,175 @@ h1,h2,h3,h4,h5,h6 {
 
 .footer .social-media-icons a:hover {
   color: #cccccc;
+}
+
+/* =========================
+   Call-to-Action Button
+   ========================= */
+.call-coach-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--color-gray-text);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--btn-radius);
+  padding: var(--btn-padding);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  white-space: nowrap;
+}
+
+.call-coach-btn:hover {
+  background-color: var(--color-dark-maroon);
+}
+
+@media (max-width: 768px) {
+  #footer {
+    padding-bottom: 100px !important;
+  }
+  .call-coach-btn {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    border-radius: 0;
+    text-align: center;
+    padding: 15px;
+  }
+}
+
+/* =========================
+   Gallery / Carousel
+   ========================= */
+#gallery {
+  overflow-x: hidden; /* kill horizontal scroll */
+}
+#gallery .container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Slides */
+.gallery-img {
+  height: clamp(220px, 60vh, 540px);
+  object-fit: cover;
+  width: 100%;
+  border-radius: var(--control-radius);
+}
+
+/* Indicators (dots) */
+.carousel-indicators [data-bs-target] {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--color-white);
+  opacity: 0.6;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+.carousel-indicators .active {
+  opacity: 1;
+  background-color: var(--color-primary);
+  transform: scale(1.2);
+}
+
+/* Thumbnails (desktop only) */
+.thumb-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.thumb-indicators button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+.thumb-indicators img {
+  width: 80px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 6px;
+  opacity: 0.65;
+  border: 2px solid transparent;
+  transition: opacity var(--transition-fast), transform var(--transition-fast), border var(--transition-fast);
+}
+.thumb-indicators button.active img {
+  opacity: 1;
+  border-color: var(--color-primary);
+  transform: scale(1.05);
+}
+.thumb-indicators img:hover {
+  opacity: 0.9;
+}
+
+/* Hide thumbnails on mobile */
+@media (max-width: 767.98px) {
+  .thumb-indicators {
+    display: none !important;
+  }
+}
+
+/* =========================
+   Carousel Arrows (Refactored)
+   ========================= */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 3.5rem;
+  height: 3.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--color-primary); /* red circle */
+  border-radius: 50%;
+  opacity: 0.95;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.carousel-control-prev {
+  left: -4.5rem; /* outside */
+}
+.carousel-control-next {
+  right: -4.5rem;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Remove Bootstrap default white icon */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-image: none !important;
+}
+
+/* Custom Black Chevrons */
+.carousel-control-prev-icon::before,
+.carousel-control-next-icon::before {
+  content: '';
+  display: inline-block;
+  border: solid black;
+  border-width: 0 .35rem .35rem 0;
+  padding: .55rem;
+}
+
+/* Arrow directions */
+.carousel-control-prev-icon::before {
+  transform: rotate(135deg);
+}
+.carousel-control-next-icon::before {
+  transform: rotate(-45deg);
+}
+
+/* Hide arrows on mobile */
+@media (max-width: 767.98px) {
+  .carousel-control-prev,
+  .carousel-control-next {
+    display: none !important;
+  }
 }

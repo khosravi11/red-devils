@@ -1,81 +1,107 @@
-import React from 'react';
+import React, { useEffect } from "react";
+
+const IMAGES = Array.from({ length: 7 }, (_, i) => `/images/brdCarousel${i + 1}.webp`);
 
 const ImageCarousel = () => {
-  return (
-    <section id="gallery" className="py-5" style={{ backgroundColor: '#000' }}>
-      <div className="container">
+  useEffect(() => {
+    const carousel = document.getElementById("brdCarousel");
 
-        <div 
-          id="brdCarousel" 
-          className="carousel slide" 
-          data-bs-ride="carousel" 
+    const handleSlide = (e) => {
+      const index = e.to; // Bootstrap gives the index of the new active slide
+
+      // Remove active from all thumbnails
+      document
+        .querySelectorAll(".thumb-indicators button")
+        .forEach((btn) => btn.classList.remove("active"));
+
+      // Add active to the matching thumbnail
+      const activeThumb = document.querySelector(
+        `.thumb-indicators button[data-bs-slide-to="${index}"]`
+      );
+      if (activeThumb) {
+        activeThumb.classList.add("active");
+      }
+    };
+
+    carousel.addEventListener("slid.bs.carousel", handleSlide);
+
+    return () => {
+      carousel.removeEventListener("slid.bs.carousel", handleSlide);
+    };
+  }, []);
+
+  return (
+    <section id="gallery" className="bg-black py-5 text-center">
+      <div className="container">
+        <div
+          id="brdCarousel"
+          className="carousel slide carousel-fade mx-auto"
+          data-bs-ride="carousel"
+          data-bs-interval="4500"
           data-bs-touch="true"
+          data-bs-wrap="true"
+          style={{ maxWidth: "900px" }}
         >
-          {/* Carousel Images */}
-          <div className="carousel-inner rounded shadow-lg overflow-hidden">
-            {[...Array(7)].map((_, index) => (
-              <div
-                key={index}
-                className={`carousel-item ${index === 0 ? 'active' : ''}`}
-              >
+          {/* Slides */}
+          <div className="carousel-inner rounded-3 shadow-lg">
+            {IMAGES.map((src, idx) => (
+              <div key={idx} className={`carousel-item ${idx === 0 ? "active" : ""}`}>
                 <img
-                  src={`/images/brdCarousel${index + 1}.webp`}
-                  className="d-block w-100"
-                  alt={``}
-                  style={{ maxHeight: '500px', objectFit: 'cover' }}
+                  src={src}
+                  className="d-block w-100 gallery-img"
+                  alt={`Red Devils gallery ${idx + 1}`}
+                  loading="lazy"
                 />
               </div>
             ))}
           </div>
 
-          {/* Controls outside & larger */}
+          {/* Controls (desktop only) */}
           <button
-            className="carousel-control-prev"
+            className="carousel-control-prev d-none d-md-flex"
             type="button"
             data-bs-target="#brdCarousel"
             data-bs-slide="prev"
-            style={{ width: '5%', left: '-80px' }}
           >
-            <span 
-              className="carousel-control-prev-icon" 
-              aria-hidden="true" 
-              style={{ transform: 'scale(2)' }} // make arrow bigger
-            ></span>
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
             <span className="visually-hidden">Previous</span>
           </button>
           <button
-            className="carousel-control-next"
+            className="carousel-control-next d-none d-md-flex"
             type="button"
             data-bs-target="#brdCarousel"
             data-bs-slide="next"
-            style={{ width: '5%', right: '-80px' }}
           >
-            <span 
-              className="carousel-control-next-icon" 
-              aria-hidden="true" 
-              style={{ transform: 'scale(2)' }} // make arrow bigger
-            ></span>
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
             <span className="visually-hidden">Next</span>
           </button>
 
-          {/* Indicators moved below */}
+          {/* Indicators (dots) */}
           <div className="carousel-indicators position-static mt-3">
-            {[...Array(7)].map((_, index) => (
+            {IMAGES.map((_, idx) => (
               <button
-                key={index}
+                key={idx}
                 type="button"
                 data-bs-target="#brdCarousel"
-                data-bs-slide-to={index}
-                className={index === 0 ? 'active' : ''}
-                aria-current={index === 0 ? 'true' : undefined}
-                aria-label={`Slide ${index + 1}`}
-                style={{
-                  width: '12px',
-                  height: '12px',
-                  borderRadius: '50%',
-                  margin: '0 6px',
-                }}
+                data-bs-slide-to={idx}
+                className={idx === 0 ? "active" : ""}
+                aria-label={`Go to slide ${idx + 1}`}
               ></button>
+            ))}
+          </div>
+
+          {/* Thumbnails (desktop only) */}
+          <div className="thumb-indicators mt-3 d-none d-md-flex">
+            {IMAGES.map((src, idx) => (
+              <button
+                key={idx}
+                type="button"
+                data-bs-target="#brdCarousel"
+                data-bs-slide-to={idx}
+                className={idx === 0 ? "active" : ""}
+              >
+                <img src={src} alt={`Thumbnail ${idx + 1}`} loading="lazy" />
+              </button>
             ))}
           </div>
         </div>
