@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
 
+const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+
 const Register = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -19,9 +23,14 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      setErrorMessage('Email service is not configured. Please try again later.');
+      setSuccessMessage('');
+      return;
+    }
 
     emailjs
-      .send('service_mkubqr9', 'template_l178rz9', formData, 'ZRnaxOFhnzpDdbvbK')
+      .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formData, EMAILJS_PUBLIC_KEY)
       .then(() => {
         setSuccessMessage(
           'Thank you for reaching out! Your message has been sent successfully. One of our representatives will contact you soon.'
@@ -37,7 +46,7 @@ const Register = () => {
   };
 
   return (
-    <section id="register" className="register-container text-white py-5 bg-dark">
+    <section id="register" className="register-container text-white py-5 bg-dark reveal">
       <div className="container">
         <h2 className="section-title text-center mb-4">Contact Us</h2>
         <p className="text-center mb-5">

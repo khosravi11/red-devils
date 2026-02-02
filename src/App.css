@@ -28,11 +28,19 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-primary);
   font-size: 24px;
   line-height: 1.5;
   color: var(--color-gray-text);
+}
+
+section {
+  scroll-margin-top: 90px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -66,8 +74,10 @@ h1, h2, h3, h4, h5, h6 {
    ========================= */
 .banner-image {
   width: 100%;
-  height: 600px;
-  background: url('/public/images/RedDevilsHeroImage.jpg') no-repeat center top;
+  min-height: 60vh;
+  background-color: #000;
+  background-position: top center;
+  background-repeat: no-repeat;
   background-size: cover;
 }
 
@@ -113,6 +123,33 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.6;
   margin-bottom: 2rem;
   color: var(--color-gray-text);
+}
+
+/* =========================
+   Scroll Reveal
+   ========================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal.delay-1 {
+  transition-delay: 0.1s;
+}
+
+.reveal.delay-2 {
+  transition-delay: 0.2s;
+}
+
+.reveal.delay-3 {
+  transition-delay: 0.3s;
 }
 
 /* =========================
@@ -216,7 +253,7 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: var(--color-gray-text);
+  background-color: var(--color-primary);
   color: var(--color-white);
   border: none;
   border-radius: var(--btn-radius);
@@ -227,7 +264,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .call-coach-btn:hover {
-  background-color: var(--color-dark-maroon);
+  background-color: var(--color-primary-hover);
 }
 
 @media (max-width: 768px) {

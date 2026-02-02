@@ -1,17 +1,17 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
   return (
-    <footer id="footer" className="footer bg-dark text-white py-4">
+    <footer id="footer" className="footer bg-dark text-white py-4 reveal">
       <div className="container">
         <div className="row">
           <div className="col-md-4 mb-3 text-center">
             <h5 className="section-title">Contact Us</h5>
             <ul className="list-unstyled">
               <li className="fs-3">
-                <strong>Phone:</strong>{' '}
+                <strong>Phone:</strong>{" "}
                 <a href="tel:+15103658568" className="text-white">
                   (510) 365-8568
                 </a>
@@ -24,8 +24,8 @@ const Footer = () => {
             <ul className="list-unstyled">
               <li><a href="#home" className="text-white">Home</a></li>
               <li><a href="#about" className="text-white">About</a></li>
-              <li><a href="#staff" className="text-white">Coaching Staff</a></li>
-              <li><a href="#register" className="text-white">Contact</a></li>
+              <li><a href="#coaches" className="text-white">Coaching Staff</a></li>
+              <li><a href="#register" className="text-white">Contact Us</a></li>
               <li><a href="#affiliates" className="text-white">Partners</a></li>
             </ul>
           </div>

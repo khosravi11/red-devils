@@ -25,15 +25,15 @@ const NavBar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav py-2 mx-auto flex-column flex-lg-row fs-2 text-center">
+          <ul className="navbar-nav py-2 mx-auto flex-column flex-lg-row fs-4 text-center">
             {[
               { href: "#home", label: "Home" },
               { href: "#about", label: "About" },
               { href: "#coaches", label: "Coaching Staff" },
               { href: "#footer", label: "Contact" },
               { href: "#affiliates", label: "Partners" },
-            ].map((item, index) => (
-              <li className="nav-item me-2" key={index}>
+            ].map((item) => (
+              <li className="nav-item me-2" key={item.href}>
                 <a className="nav-link" href={item.href}>
                   {item.label}
                 </a>

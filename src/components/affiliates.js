@@ -1,12 +1,12 @@
 import React from "react";
 
 const Affiliates = () => (
-  <section id="affiliates" className="py-5 bg-white">
+  <section id="affiliates" className="py-5 bg-white reveal">
     <div className="container text-center">
       <h2 className="section-title text-center mb-4">Partners</h2>
       <div className="row justify-content-center align-items-center">
-        {["EvolveLogo.png", "AdidasLogo.png"].map((logo, index) => (
-          <div key={index} className="col-6 col-md-4 d-flex justify-content-center">
+        {["EvolveLogo.png", "AdidasLogo.png"].map((logo) => (
+          <div key={logo} className="col-6 col-md-4 d-flex justify-content-center">
             <img
               src={`/images/${logo}`}
               className="img-fluid rounded affiliate-logo"

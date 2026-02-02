@@ -1,10 +1,30 @@
 import React, { useEffect } from "react";
 
-const IMAGES = Array.from({ length: 7 }, (_, i) => `/images/brdCarousel${i + 1}.webp`);
+const IMAGES = [
+  "/images/brdCarousel1.webp",
+  "/images/brdCarousel2.webp",
+  "/images/brdCarousel3.webp",
+  "/images/brdCarousel4.webp",
+  "/images/brdCarousel5.webp",
+  "/images/brdCarousel6.webp",
+  "/images/brdCarousel7.webp",
+  "/images/brdCarousel8.webp",
+  "/images/brdCarousel9.webp",
+  "/images/brdCarousel10.webp",
+  "/images/brdCarousel11.webp",
+  "/images/brdCarousel12.webp",
+  "/images/brdCarousel13.webp",
+  "/images/brdCarousel14.webp",
+  "/images/brdCarousel15.webp",
+  "/images/brdCarousel16.webp",
+];
 
 const ImageCarousel = () => {
   useEffect(() => {
     const carousel = document.getElementById("brdCarousel");
+    if (!carousel) {
+      return undefined;
+    }
 
     const handleSlide = (e) => {
       const index = e.to; // Bootstrap gives the index of the new active slide
@@ -31,7 +51,7 @@ const ImageCarousel = () => {
   }, []);
 
   return (
-    <section id="gallery" className="bg-black py-5 text-center">
+    <section id="gallery" className="bg-black py-5 text-center reveal">
       <div className="container">
         <div
           id="brdCarousel"
@@ -45,7 +65,7 @@ const ImageCarousel = () => {
           {/* Slides */}
           <div className="carousel-inner rounded-3 shadow-lg">
             {IMAGES.map((src, idx) => (
-              <div key={idx} className={`carousel-item ${idx === 0 ? "active" : ""}`}>
+              <div key={src} className={`carousel-item ${idx === 0 ? "active" : ""}`}>
                 <img
                   src={src}
                   className="d-block w-100 gallery-img"
@@ -78,9 +98,9 @@ const ImageCarousel = () => {
 
           {/* Indicators (dots) */}
           <div className="carousel-indicators position-static mt-3">
-            {IMAGES.map((_, idx) => (
+            {IMAGES.map((src, idx) => (
               <button
-                key={idx}
+                key={src}
                 type="button"
                 data-bs-target="#brdCarousel"
                 data-bs-slide-to={idx}
@@ -94,7 +114,7 @@ const ImageCarousel = () => {
           <div className="thumb-indicators mt-3 d-none d-md-flex">
             {IMAGES.map((src, idx) => (
               <button
-                key={idx}
+                key={src}
                 type="button"
                 data-bs-target="#brdCarousel"
                 data-bs-slide-to={idx}

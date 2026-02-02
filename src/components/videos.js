@@ -29,7 +29,7 @@ const VideoPlaylist = () => {
   };
 
   return (
-    <section id="videos" className="bg-black py-5">
+    <section id="videos" className="bg-black py-5 reveal">
       <div className="container">
         <h2 className="text-center section-title text-white mb-4">Videos</h2>
         <div className="row justify-content-center align-items-center">
@@ -63,16 +63,16 @@ const VideoPlaylist = () => {
               className="list-group rounded shadow-lg overflow-auto mx-auto"
               style={{ maxHeight: "500px", width: "100%", maxWidth: "450px" }}
             >
-              {videos.map((video, index) => (
+              {videos.map((video) => (
                 <button
-                  key={index}
+                  key={video.src}
                   className={`list-group-item list-group-item-action d-flex align-items-center px-4 py-3 ${
                     currentVideo.src === video.src ? "active bg-secondary text-white" : "text-dark"
                   }`}
                   onClick={() => handleVideoSelect(video)}
                   style={{ cursor: "pointer", transition: "0.3s", fontSize: "1.1rem" }}
                 >
-                  🎬 {video.name}
+                  Video: {video.name}
                 </button>
               ))}
             </div>
