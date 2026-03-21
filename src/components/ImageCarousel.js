@@ -1,7 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const IMAGES = Array.from({ length: 29 }, (_, index) => {
-  const imageNumber = index + 1;
+const IMAGE_ORDER = [
+  20, 29, 28, 27, 26, 25, 24, 23, 22, 21,
+  19, 18, 17, 16, 15, 14, 13, 12, 11,
+  10, 9, 8, 7, 6, 5, 4, 3, 2, 1,
+];
+
+const IMAGES = IMAGE_ORDER.map((imageNumber) => {
   const baseName = `brdCarousel${imageNumber}.webp`;
 
   return {
