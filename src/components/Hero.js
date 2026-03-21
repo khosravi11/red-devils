@@ -26,7 +26,7 @@ const Hero = () => {
 
           {/* Registration Message */}
           <h2 className="mt-4 text-warning fw-bold animate__animated animate__fadeInUp">
-            Fall 2025 Registration Still Open
+            Spring/Summer 2026 Registration is Open
           </h2>
           <p className="lead">Secure your spot today</p>
 
