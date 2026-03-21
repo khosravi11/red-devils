@@ -288,21 +288,105 @@ h1, h2, h3, h4, h5, h6 {
 #gallery {
   overflow-x: hidden; /* kill horizontal scroll */
 }
-#gallery .container-fluid {
-  padding-left: 0;
-  padding-right: 0;
-}
 
 /* Slides */
+.gallery-carousel {
+  position: relative;
+}
+
+.gallery-stage {
+  align-items: center;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 45%),
+    #000;
+  display: flex;
+  min-height: clamp(220px, 60vh, 540px);
+  outline: none;
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-stage:focus-visible {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.22);
+}
+
+.gallery-slide {
+  align-items: center;
+  background-color: #000;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  min-height: inherit;
+  padding: 1.25rem;
+}
+
+.gallery-control {
+  align-items: center;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+  height: 3.5rem;
+  justify-content: center;
+  opacity: 0.95;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  width: 3.5rem;
+  z-index: 2;
+}
+
+.gallery-control:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.gallery-control:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 3px;
+}
+
+.gallery-control-prev {
+  left: 1rem;
+}
+
+.gallery-control-next {
+  right: 1rem;
+}
+
+.gallery-control-icon {
+  border: solid black;
+  border-width: 0 0.35rem 0.35rem 0;
+  display: inline-block;
+  padding: 0.55rem;
+}
+
+.gallery-control-icon-prev {
+  transform: rotate(135deg);
+}
+
+.gallery-control-icon-next {
+  transform: rotate(-45deg);
+}
+
 .gallery-img {
   height: clamp(220px, 60vh, 540px);
-  object-fit: cover;
-  width: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  width: auto;
   border-radius: var(--control-radius);
 }
 
 /* Indicators (dots) */
-.carousel-indicators [data-bs-target] {
+.carousel-indicators {
+  gap: 0.4rem;
+}
+
+.carousel-indicators button {
+  border: none;
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -310,6 +394,7 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.6;
   transition: opacity var(--transition-fast), transform var(--transition-fast);
 }
+
 .carousel-indicators .active {
   opacity: 1;
   background-color: var(--color-primary);
@@ -355,64 +440,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* =========================
-   Carousel Arrows (Refactored)
+   Carousel Controls
    ========================= */
-.carousel-control-prev,
-.carousel-control-next {
-  width: 3.5rem;
-  height: 3.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: var(--color-primary); /* red circle */
-  border-radius: 50%;
-  opacity: 0.95;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity var(--transition-fast), transform var(--transition-fast);
-}
-
-.carousel-control-prev {
-  left: -4.5rem; /* outside */
-}
-.carousel-control-next {
-  right: -4.5rem;
-}
-
-.carousel-control-prev:hover,
-.carousel-control-next:hover {
-  opacity: 1;
-  transform: translateY(-50%) scale(1.1);
-}
-
-/* Remove Bootstrap default white icon */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-image: none !important;
-}
-
-/* Custom Black Chevrons */
-.carousel-control-prev-icon::before,
-.carousel-control-next-icon::before {
-  content: '';
-  display: inline-block;
-  border: solid black;
-  border-width: 0 .35rem .35rem 0;
-  padding: .55rem;
-}
-
-/* Arrow directions */
-.carousel-control-prev-icon::before {
-  transform: rotate(135deg);
-}
-.carousel-control-next-icon::before {
-  transform: rotate(-45deg);
-}
-
 /* Hide arrows on mobile */
 @media (max-width: 767.98px) {
-  .carousel-control-prev,
-  .carousel-control-next {
+  .gallery-stage {
+    min-height: clamp(220px, 52vh, 420px);
+  }
+
+  .gallery-slide {
+    padding: 0.85rem;
+  }
+
+  .gallery-control {
     display: none !important;
   }
 }

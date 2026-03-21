@@ -1,126 +1,200 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-const IMAGES = [
-  "/images/brdCarousel1.webp",
-  "/images/brdCarousel2.webp",
-  "/images/brdCarousel3.webp",
-  "/images/brdCarousel4.webp",
-  "/images/brdCarousel5.webp",
-  "/images/brdCarousel6.webp",
-  "/images/brdCarousel7.webp",
-  "/images/brdCarousel8.webp",
-  "/images/brdCarousel9.webp",
-  "/images/brdCarousel10.webp",
-  "/images/brdCarousel11.webp",
-  "/images/brdCarousel12.webp",
-  "/images/brdCarousel13.webp",
-  "/images/brdCarousel14.webp",
-  "/images/brdCarousel15.webp",
-  "/images/brdCarousel16.webp",
-];
+const IMAGES = Array.from({ length: 29 }, (_, index) => {
+  const imageNumber = index + 1;
+  const baseName = `brdCarousel${imageNumber}.webp`;
+
+  return {
+    full: `/images/carousel/${baseName}`,
+    thumb: `/images/carousel/thumbs/${baseName}`,
+  };
+});
+
+const AUTOPLAY_DELAY_MS = 4500;
+const SWIPE_THRESHOLD_PX = 40;
+
+const wrapIndex = (index, total) => {
+  if (total === 0) {
+    return 0;
+  }
+
+  return (index + total) % total;
+};
 
 const ImageCarousel = () => {
+  const carouselRootRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const touchStartXRef = useRef(null);
+  const imageCount = IMAGES.length;
+
   useEffect(() => {
-    const carousel = document.getElementById("brdCarousel");
-    if (!carousel) {
+    if (isPaused || imageCount < 2) {
       return undefined;
     }
 
-    const handleSlide = (e) => {
-      const index = e.to; // Bootstrap gives the index of the new active slide
-
-      // Remove active from all thumbnails
-      document
-        .querySelectorAll(".thumb-indicators button")
-        .forEach((btn) => btn.classList.remove("active"));
-
-      // Add active to the matching thumbnail
-      const activeThumb = document.querySelector(
-        `.thumb-indicators button[data-bs-slide-to="${index}"]`
-      );
-      if (activeThumb) {
-        activeThumb.classList.add("active");
-      }
-    };
-
-    carousel.addEventListener("slid.bs.carousel", handleSlide);
+    const intervalId = window.setInterval(() => {
+      setActiveIndex((current) => wrapIndex(current + 1, imageCount));
+    }, AUTOPLAY_DELAY_MS);
 
     return () => {
-      carousel.removeEventListener("slid.bs.carousel", handleSlide);
+      window.clearInterval(intervalId);
     };
-  }, []);
+  }, [imageCount, isPaused]);
+
+  const currentImage = IMAGES[activeIndex];
+
+  useEffect(() => {
+    if (imageCount < 2) {
+      return;
+    }
+
+    const nextImage = new Image();
+    nextImage.src = IMAGES[wrapIndex(activeIndex + 1, imageCount)].full;
+
+    const previousImage = new Image();
+    previousImage.src = IMAGES[wrapIndex(activeIndex - 1, imageCount)].full;
+  }, [activeIndex, imageCount]);
+
+  const goToSlide = (idx) => {
+    setActiveIndex(wrapIndex(idx, imageCount));
+  };
+
+  const goToPrevious = () => {
+    setActiveIndex((current) => wrapIndex(current - 1, imageCount));
+  };
+
+  const goToNext = () => {
+    setActiveIndex((current) => wrapIndex(current + 1, imageCount));
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      goToPrevious();
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      goToNext();
+    }
+  };
+
+  const handleTouchStart = (event) => {
+    touchStartXRef.current = event.touches[0]?.clientX ?? null;
+  };
+
+  const handleTouchEnd = (event) => {
+    const startX = touchStartXRef.current;
+    const endX = event.changedTouches[0]?.clientX ?? null;
+    touchStartXRef.current = null;
+
+    if (startX === null || endX === null) {
+      return;
+    }
+
+    const deltaX = endX - startX;
+    if (Math.abs(deltaX) < SWIPE_THRESHOLD_PX) {
+      return;
+    }
+
+    if (deltaX > 0) {
+      goToPrevious();
+      return;
+    }
+
+    goToNext();
+  };
+
+  const handleFocusCapture = () => {
+    setIsPaused(true);
+  };
+
+  const handleBlurCapture = (event) => {
+    const nextFocusedElement = event.relatedTarget;
+    if (carouselRootRef.current?.contains(nextFocusedElement)) {
+      return;
+    }
+
+    setIsPaused(false);
+  };
 
   return (
     <section id="gallery" className="bg-black py-5 text-center reveal">
       <div className="container">
         <div
-          id="brdCarousel"
-          className="carousel slide carousel-fade mx-auto"
-          data-bs-ride="carousel"
-          data-bs-interval="4500"
-          data-bs-touch="true"
-          data-bs-wrap="true"
+          ref={carouselRootRef}
+          className="gallery-carousel mx-auto"
           style={{ maxWidth: "900px" }}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onFocusCapture={handleFocusCapture}
+          onBlurCapture={handleBlurCapture}
         >
-          {/* Slides */}
-          <div className="carousel-inner rounded-3 shadow-lg">
-            {IMAGES.map((src, idx) => (
-              <div key={src} className={`carousel-item ${idx === 0 ? "active" : ""}`}>
-                <img
-                  src={src}
-                  className="d-block w-100 gallery-img"
-                  alt={`Red Devils gallery ${idx + 1}`}
-                  loading="lazy"
-                />
-              </div>
-            ))}
+          <div
+            className="gallery-stage rounded-3 shadow-lg"
+            tabIndex={0}
+            onKeyDown={handleKeyDown}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            aria-roledescription="carousel"
+            aria-label="Red Devils photo gallery"
+          >
+            <button
+              className="gallery-control gallery-control-prev d-none d-md-flex"
+              type="button"
+              onClick={goToPrevious}
+              aria-label="Show previous slide"
+            >
+              <span className="gallery-control-icon gallery-control-icon-prev" aria-hidden="true"></span>
+            </button>
+
+            <div className="gallery-slide">
+              <img
+                key={currentImage.full}
+                src={currentImage.full}
+                className="gallery-img"
+                alt={`Red Devils gallery ${activeIndex + 1}`}
+                loading={activeIndex === 0 ? "eager" : "lazy"}
+                fetchPriority={activeIndex === 0 ? "high" : "auto"}
+                decoding="async"
+              />
+            </div>
+
+            <button
+              className="gallery-control gallery-control-next d-none d-md-flex"
+              type="button"
+              onClick={goToNext}
+              aria-label="Show next slide"
+            >
+              <span className="gallery-control-icon gallery-control-icon-next" aria-hidden="true"></span>
+            </button>
           </div>
 
-          {/* Controls (desktop only) */}
-          <button
-            className="carousel-control-prev d-none d-md-flex"
-            type="button"
-            data-bs-target="#brdCarousel"
-            data-bs-slide="prev"
-          >
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button
-            className="carousel-control-next d-none d-md-flex"
-            type="button"
-            data-bs-target="#brdCarousel"
-            data-bs-slide="next"
-          >
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Next</span>
-          </button>
-
-          {/* Indicators (dots) */}
           <div className="carousel-indicators position-static mt-3">
-            {IMAGES.map((src, idx) => (
+            {IMAGES.map((image, idx) => (
               <button
-                key={src}
+                key={image.full}
                 type="button"
-                data-bs-target="#brdCarousel"
-                data-bs-slide-to={idx}
-                className={idx === 0 ? "active" : ""}
+                onClick={() => goToSlide(idx)}
+                className={idx === activeIndex ? "active" : ""}
                 aria-label={`Go to slide ${idx + 1}`}
+                aria-current={idx === activeIndex ? "true" : undefined}
               ></button>
             ))}
           </div>
 
-          {/* Thumbnails (desktop only) */}
           <div className="thumb-indicators mt-3 d-none d-md-flex">
-            {IMAGES.map((src, idx) => (
+            {IMAGES.map((image, idx) => (
               <button
-                key={src}
+                key={image.thumb}
                 type="button"
-                data-bs-target="#brdCarousel"
-                data-bs-slide-to={idx}
-                className={idx === 0 ? "active" : ""}
+                onClick={() => goToSlide(idx)}
+                className={idx === activeIndex ? "active" : ""}
+                aria-label={`Show slide ${idx + 1}`}
+                aria-current={idx === activeIndex ? "true" : undefined}
               >
-                <img src={src} alt={`Thumbnail ${idx + 1}`} loading="lazy" />
+                <img src={image.thumb} alt={`Thumbnail ${idx + 1}`} loading="lazy" decoding="async" />
               </button>
             ))}
           </div>
