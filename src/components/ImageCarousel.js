@@ -120,7 +120,7 @@ const ImageCarousel = () => {
   };
 
   return (
-    <section id="gallery" className="bg-black py-5 text-center reveal">
+    <section id="gallery" className="bg-black py-5 text-center">
       <div className="container">
         <div
           ref={carouselRootRef}

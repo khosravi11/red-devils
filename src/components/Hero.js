@@ -6,7 +6,7 @@ const HERO_BG_STYLE = {
 
 const Hero = () => {
   return (
-    <section id="home" className="reveal">
+    <section id="home">
       <div
         className="banner-image text-center text-white fst-italic d-flex flex-wrap align-items-center py-5"
         style={HERO_BG_STYLE}
