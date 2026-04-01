@@ -5,6 +5,7 @@ import "animate.css";
 import './App.css';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
+import FeaturedVideo from './components/FeaturedVideo';
 import Affiliates from './components/Affiliates';
 import About from './components/About';
 import Register from './components/Register';
@@ -40,6 +41,7 @@ function App() {
     <div>
       <Nav />
       <Hero />
+      <FeaturedVideo />
       <ImageCarousel/>
       <About />
       <Coaches/>
