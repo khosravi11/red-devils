@@ -161,7 +161,7 @@ const ImageCarousel = () => {
                 className="gallery-img"
                 alt={`Red Devils gallery ${activeIndex + 1}`}
                 loading={activeIndex === 0 ? "eager" : "lazy"}
-                fetchPriority={activeIndex === 0 ? "high" : "auto"}
+                fetchpriority={activeIndex === 0 ? "high" : "auto"}
                 decoding="async"
               />
             </div>
