@@ -2,7 +2,7 @@
 
 ## Short Summary
 
-Custom React website for the Berkeley Red Devils, a local AAU basketball program in Berkeley, California. The site is designed as a community-facing marketing and contact experience for families, with clear calls to action, mobile-friendly layout, coach highlights, media coverage, and a simple contact workflow.
+Custom React website for the Berkeley Red Devils, a local AAU basketball program in Berkeley, California. The site provides a community-facing experience for families with clear calls to action, mobile-friendly layout, coach highlights, media coverage, and a lightweight contact workflow. It was intentionally built as a frontend-only site so the client can maintain a public web presence without backend infrastructure or ongoing server costs.
 
 ## Live Demo
 
@@ -60,7 +60,7 @@ npm install
 npm start
 ```
 
-The app runs locally at `http://localhost:3000`.
+The site runs locally at `http://localhost:3000`.
 
 ## Environment Variables
 
@@ -86,18 +86,14 @@ If real EmailJS values were ever committed to this repository, rotate them in th
 
 - Kept the project honest as a frontend-only site instead of overstating it as a full platform
 - Used EmailJS to support contact form delivery without introducing backend hosting overhead
+- Chose a frontend-only architecture intentionally so the client would not need to pay for backend hosting or maintain server-side infrastructure
 - Structured the homepage as a practical community website: clear contact paths, coach credibility, media proof points, and mobile-first access for families
 - Preserved real-world content and assets so the repository reads like client/community work rather than a tutorial exercise
 
 ## Future Improvements
 
-- Add a public deployment URL and repository website field
-- Add a lightweight CMS or content workflow if non-developers need to update seasonal registration copy
-- Expand tests around navigation, contact form states, and responsive behavior
-- Compress large media assets further if page weight becomes a concern
+Not included in this README. This document is intentionally focused on the current project scope.
 
 ## Author
 
-Built by [Sahar Khosravi](https://github.com/khosravi11).
-
-If you are reviewing this project in an interview context, this repo is intended to show practical frontend work for a real community organization: content structure, responsive UI, third-party integration, and production-minded polish.
+Built by [Saam Khosravi](https://github.com/khosravi11).
