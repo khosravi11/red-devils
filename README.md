@@ -6,25 +6,11 @@ Custom React website for the Berkeley Red Devils, a local AAU basketball program
 
 ## Live Demo
 
-No public deployment is linked yet.
-
-Recommended next step: deploy the current build to Vercel or Netlify, then add that URL here and in the GitHub repository "Website" field.
+https://reddevilsaau.com/
 
 ## Screenshots
 
-Add screenshots to `docs/screenshots/` using these suggested filenames:
-
-- `docs/screenshots/home-desktop.png`
-- `docs/screenshots/gallery-mobile.png`
-- `docs/screenshots/contact-section.png`
-
-Then replace the placeholders below:
-
-```md
-![Homepage hero](docs/screenshots/home-desktop.png)
-![Mobile gallery](docs/screenshots/gallery-mobile.png)
-![Contact section](docs/screenshots/contact-section.png)
-```
+This repo does not currently include screenshots. The live site above is the best way to review the project.
 
 ## Features
 
@@ -106,7 +92,6 @@ If real EmailJS values were ever committed to this repository, rotate them in th
 ## Future Improvements
 
 - Add a public deployment URL and repository website field
-- Capture polished desktop and mobile screenshots for the README
 - Add a lightweight CMS or content workflow if non-developers need to update seasonal registration copy
 - Expand tests around navigation, contact form states, and responsive behavior
 - Compress large media assets further if page weight becomes a concern
