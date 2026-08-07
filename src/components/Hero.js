@@ -1,44 +1,256 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-const HERO_BG_STYLE = {
-  backgroundImage: `url(${process.env.PUBLIC_URL}/images/RedDevilsHeroImage.jpg)`,
-};
+const ANNOUNCEMENTS = [
+  {
+    eyebrow: "Community Event",
+    title: "Berkeley Red Devils Family Potluck",
+    date: "Saturday, August 8 • 12:30–4:00 PM",
+    location: "San Pablo Park • Berkeley, CA",
+    description:
+      "Bring food and drinks to share, plus tables and chairs. Come enjoy good food, good vibes, and the BRD family.",
+    ctaLabel: "View Potluck Flyer",
+    flyer: "/images/hero/family-potluck-2026.jpg",
+    alt: "Berkeley Red Devils family potluck flyer",
+  },
+  {
+    eyebrow: "2026–27 Season",
+    title: "Team Tryouts",
+    date: "August 24 • 6:30–8:00 PM",
+    location: "Willard Middle School • Berkeley, CA",
+    description:
+      "Developmental and competitive teams for players 9U–14U. Scan the flyer to register for the $25 tryout.",
+    ctaLabel: "View Tryout Flyer",
+    flyer: "/images/hero/team-tryouts-2026-27.jpg",
+    alt: "Berkeley Red Devils 2026–27 team tryouts flyer",
+  },
+];
+
+const AUTOPLAY_DELAY_MS = 6500;
+const SWIPE_THRESHOLD_PX = 45;
+
+const wrapIndex = (index) =>
+  (index + ANNOUNCEMENTS.length) % ANNOUNCEMENTS.length;
 
 const Hero = () => {
+  const carouselRef = useRef(null);
+  const touchStartXRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() =>
+    typeof window !== "undefined" && typeof window.matchMedia === "function"
+      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      : false
+  );
+
+  useEffect(() => {
+    if (typeof window.matchMedia !== "function") {
+      return undefined;
+    }
+
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const handleChange = (event) => setPrefersReducedMotion(event.matches);
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", handleChange);
+      return () => mediaQuery.removeEventListener("change", handleChange);
+    }
+
+    mediaQuery.addListener(handleChange);
+    return () => mediaQuery.removeListener(handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (isPaused || prefersReducedMotion) {
+      return undefined;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setActiveIndex((current) => wrapIndex(current + 1));
+    }, AUTOPLAY_DELAY_MS);
+
+    return () => window.clearInterval(intervalId);
+  }, [isPaused, prefersReducedMotion]);
+
+  const goToPrevious = () => {
+    setActiveIndex((current) => wrapIndex(current - 1));
+  };
+
+  const goToNext = () => {
+    setActiveIndex((current) => wrapIndex(current + 1));
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      goToPrevious();
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      goToNext();
+    }
+  };
+
+  const handleTouchStart = (event) => {
+    touchStartXRef.current = event.touches[0]?.clientX ?? null;
+  };
+
+  const handleTouchEnd = (event) => {
+    const startX = touchStartXRef.current;
+    const endX = event.changedTouches[0]?.clientX ?? null;
+    touchStartXRef.current = null;
+
+    if (startX === null || endX === null) {
+      return;
+    }
+
+    const distance = endX - startX;
+    if (Math.abs(distance) < SWIPE_THRESHOLD_PX) {
+      return;
+    }
+
+    if (distance > 0) {
+      goToPrevious();
+      return;
+    }
+
+    goToNext();
+  };
+
+  const handleBlurCapture = (event) => {
+    if (carouselRef.current?.contains(event.relatedTarget)) {
+      return;
+    }
+
+    setIsPaused(false);
+  };
+
+  const announcement = ANNOUNCEMENTS[activeIndex];
+
   return (
-    <section id="home">
+    <section id="home" className="hero-announcements">
+      <h1 className="visually-hidden">Berkeley Red Devils</h1>
+
       <div
-        className="banner-image text-center text-white fst-italic d-flex flex-wrap align-items-center py-5"
-        style={HERO_BG_STYLE}
+        ref={carouselRef}
+        className="hero-carousel"
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Berkeley Red Devils announcements"
+        tabIndex={0}
+        onKeyDown={handleKeyDown}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onFocusCapture={() => setIsPaused(true)}
+        onBlurCapture={handleBlurCapture}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
-        <div className="w-100">
-          {/* Main Title */}
-          <h1 className="hero-title display-3 fw-bold animate__animated animate__fadeInDown">
-            Berkeley RED DEVILS
-          </h1>
+        <article
+          key={announcement.flyer}
+          className="hero-slide"
+          role="group"
+          aria-roledescription="slide"
+          aria-label={`${activeIndex + 1} of ${ANNOUNCEMENTS.length}`}
+          aria-live={isPaused ? "polite" : "off"}
+        >
+          <div
+            className="hero-slide-backdrop"
+            style={{ backgroundImage: `url(${announcement.flyer})` }}
+            aria-hidden="true"
+          />
 
-          {/* Subtitle / Tagline */}
-          <div className="hero-subtitle shadow-lg mt-3 animate__animated animate__fadeInUp">
-            <p className="w-75 m-auto fs-4">
-              Premier AAU basketball program for youth aged 9-14 across the East Bay
-            </p>
+          <div className="hero-slide-inner">
+            <div className="hero-slide-copy">
+              <p className="hero-eyebrow">{announcement.eyebrow}</p>
+              <h2 className="hero-heading">{announcement.title}</h2>
+
+              <div className="hero-event-details">
+                <p>{announcement.date}</p>
+                <p>{announcement.location}</p>
+              </div>
+
+              <p className="hero-description">{announcement.description}</p>
+
+              <a
+                className="hero-cta"
+                href={announcement.flyer}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${announcement.ctaLabel} (opens in a new tab)`}
+              >
+                {announcement.ctaLabel}
+                <svg
+                  className="hero-external-link-icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path d="M14 5h5v5M19 5l-9 9M18 13v6H5V6h6" />
+                </svg>
+              </a>
+            </div>
+
+            <div className="hero-flyer-frame">
+              <img
+                src={announcement.flyer}
+                className="hero-flyer-image"
+                alt={announcement.alt}
+                loading={activeIndex === 0 ? "eager" : "lazy"}
+                fetchpriority={activeIndex === 0 ? "high" : "auto"}
+                decoding="async"
+              />
+            </div>
           </div>
+        </article>
 
-          {/* Registration Message */}
-          <h2 className="mt-4 text-warning fw-bold animate__animated animate__fadeInUp">
-            Spring/Summer 2026 Registration is Open
-          </h2>
-          <p className="lead">Secure your spot today</p>
-
-          {/* Call to Action */}
-          <div className="d-flex flex-column align-items-center gap-3 mt-4">
-            <a
-              className="btn btn-danger btn-lg fs-3 px-5 py-3 text-decoration-none fw-bold shadow"
-              href="#about"
+        <div className="hero-carousel-nav" aria-label="Announcement controls">
+          <button
+            className="hero-carousel-arrow"
+            type="button"
+            onClick={goToPrevious}
+            aria-label="Show previous announcement"
+          >
+            <svg
+              className="hero-arrow-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
             >
-              Learn More
-            </a>
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+
+          <div className="hero-carousel-dots">
+            {ANNOUNCEMENTS.map((item, index) => (
+              <button
+                key={item.flyer}
+                type="button"
+                className={`hero-carousel-dot${
+                  index === activeIndex ? " active" : ""
+                }`}
+                onClick={() => setActiveIndex(index)}
+                aria-label={`Show ${item.title}`}
+                aria-current={index === activeIndex ? "true" : undefined}
+              />
+            ))}
           </div>
+
+          <button
+            className="hero-carousel-arrow"
+            type="button"
+            onClick={goToNext}
+            aria-label="Show next announcement"
+          >
+            <svg
+              className="hero-arrow-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
         </div>
       </div>
     </section>
