@@ -42,8 +42,8 @@ function App() {
       <Nav />
       <Hero />
       <FeaturedVideo />
-      <ImageCarousel/>
       <About />
+      <ImageCarousel/>
       <Coaches/>
       <Register />
       <Affiliates />  

@@ -2,17 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 
 const ANNOUNCEMENTS = [
   {
-    eyebrow: "Community Event",
-    title: "Berkeley Red Devils Family Potluck",
-    date: "Saturday, August 8 • 12:30–4:00 PM",
-    location: "San Pablo Park • Berkeley, CA",
-    description:
-      "Bring food and drinks to share, plus tables and chairs. Come enjoy good food, good vibes, and the BRD family.",
-    ctaLabel: "View Potluck Flyer",
-    flyer: "/images/hero/family-potluck-2026.jpg",
-    alt: "Berkeley Red Devils family potluck flyer",
-  },
-  {
     eyebrow: "2026–27 Season",
     title: "Team Tryouts",
     date: "August 24 • 6:30–8:00 PM",
@@ -60,7 +49,7 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    if (isPaused || prefersReducedMotion) {
+    if (ANNOUNCEMENTS.length < 2 || isPaused || prefersReducedMotion) {
       return undefined;
     }
 
@@ -80,6 +69,10 @@ const Hero = () => {
   };
 
   const handleKeyDown = (event) => {
+    if (ANNOUNCEMENTS.length < 2) {
+      return;
+    }
+
     if (event.key === "ArrowLeft") {
       event.preventDefault();
       goToPrevious();
@@ -100,7 +93,11 @@ const Hero = () => {
     const endX = event.changedTouches[0]?.clientX ?? null;
     touchStartXRef.current = null;
 
-    if (startX === null || endX === null) {
+    if (
+      ANNOUNCEMENTS.length < 2 ||
+      startX === null ||
+      endX === null
+    ) {
       return;
     }
 
@@ -172,23 +169,28 @@ const Hero = () => {
 
               <p className="hero-description">{announcement.description}</p>
 
-              <a
-                className="hero-cta"
-                href={announcement.flyer}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${announcement.ctaLabel} (opens in a new tab)`}
-              >
-                {announcement.ctaLabel}
-                <svg
-                  className="hero-external-link-icon"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                  focusable="false"
+              <div className="hero-actions">
+                <a className="hero-cta" href="#register">
+                  Register for Tryouts
+                </a>
+                <a
+                  className="hero-cta hero-cta-secondary"
+                  href={announcement.flyer}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${announcement.ctaLabel} (opens in a new tab)`}
                 >
-                  <path d="M14 5h5v5M19 5l-9 9M18 13v6H5V6h6" />
-                </svg>
-              </a>
+                  {announcement.ctaLabel}
+                  <svg
+                    className="hero-external-link-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path d="M14 5h5v5M19 5l-9 9M18 13v6H5V6h6" />
+                  </svg>
+                </a>
+              </div>
             </div>
 
             <div className="hero-flyer-frame">
@@ -204,7 +206,8 @@ const Hero = () => {
           </div>
         </article>
 
-        <div className="hero-carousel-nav" aria-label="Announcement controls">
+        {ANNOUNCEMENTS.length > 1 && (
+          <div className="hero-carousel-nav" aria-label="Announcement controls">
           <button
             className="hero-carousel-arrow"
             type="button"
@@ -251,7 +254,8 @@ const Hero = () => {
               <path d="m9 18 6-6-6-6" />
             </svg>
           </button>
-        </div>
+          </div>
+        )}
       </div>
     </section>
   );

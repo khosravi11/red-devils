@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import App from './App';
 
 test('renders key homepage content', () => {
@@ -7,27 +7,63 @@ test('renders key homepage content', () => {
     screen.getByRole('heading', { name: /Berkeley RED DEVILS/i, level: 1 })
   ).toBeInTheDocument();
   expect(
-    screen.getByRole('heading', { name: /family potluck/i, level: 2 })
+    screen.getByRole('heading', { name: /^team tryouts$/i, level: 2 })
+  ).toBeInTheDocument();
+  expect(
+    screen.queryByRole('heading', { name: /family potluck/i, level: 2 })
+  ).not.toBeInTheDocument();
+  expect(
+    screen.getByRole('heading', { name: /register for team tryouts/i, level: 2 })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole('heading', { name: /see the red devils on ktvu/i, level: 2 })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole('heading', { name: /^our program$/i, level: 2 })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole('heading', { name: /the red devils in action/i, level: 2 })
   ).toBeInTheDocument();
   expect(screen.getAllByText(/Contact Us/i).length).toBeGreaterThan(0);
+
+  const navigation = screen.getByRole('navigation');
+  const navigationLinks = within(navigation).getAllByRole('link');
+  expect(navigationLinks.map((link) => link.textContent.trim()).filter(Boolean)).toEqual([
+    'Home',
+    'About',
+    'Coaches',
+    'Register',
+    'Partners',
+    'Contact',
+  ]);
+  expect(within(navigation).getByRole('link', { name: /^about$/i })).toHaveAttribute(
+    'href',
+    '#about'
+  );
+  expect(
+    within(navigation).queryByRole('link', { name: /^video$/i })
+  ).not.toBeInTheDocument();
 });
 
-test('opens each announcement flyer in a new tab', () => {
+test('embeds the tryout registration form with a direct fallback link', () => {
   render(<App />);
 
-  const potluckLink = screen.getByRole('link', {
-    name: /view potluck flyer \(opens in a new tab\)/i,
-  });
-  expect(potluckLink).toHaveAttribute(
-    'href',
-    '/images/hero/family-potluck-2026.jpg'
+  expect(
+    screen.getByTitle(/berkeley red devils team tryout registration form/i)
+  ).toHaveAttribute(
+    'src',
+    'https://docs.google.com/forms/d/e/1FAIpQLSc5SJP03FuVh54ofFRGLPZTI5LPOYXBs8RhxRs-RUV8p6Sjvg/viewform?embedded=true'
   );
-  expect(potluckLink).toHaveAttribute('target', '_blank');
-  expect(potluckLink).toHaveAttribute('rel', 'noopener noreferrer');
 
-  fireEvent.click(
-    screen.getByRole('button', { name: /show next announcement/i })
-  );
+  const fallbackLink = screen.getByRole('link', {
+    name: /open it in a new tab/i,
+  });
+  expect(fallbackLink).toHaveAttribute('target', '_blank');
+  expect(fallbackLink).toHaveAttribute('rel', 'noopener noreferrer');
+});
+
+test('opens the tryout flyer in a new tab without redundant carousel controls', () => {
+  render(<App />);
 
   const tryoutLink = screen.getByRole('link', {
     name: /view tryout flyer \(opens in a new tab\)/i,
@@ -38,28 +74,10 @@ test('opens each announcement flyer in a new tab', () => {
   );
   expect(tryoutLink).toHaveAttribute('target', '_blank');
   expect(tryoutLink).toHaveAttribute('rel', 'noopener noreferrer');
-});
-
-test('supports carousel buttons, keyboard arrows, and swipe gestures', () => {
-  render(<App />);
-
-  const carousel = screen.getByRole('region', {
-    name: /berkeley red devils announcements/i,
-  });
-  const potluckHeading = () =>
-    screen.queryByRole('heading', { name: /family potluck/i, level: 2 });
-  const tryoutHeading = () =>
-    screen.queryByRole('heading', { name: /team tryouts/i, level: 2 });
-
-  fireEvent.click(
-    screen.getByRole('button', { name: /show next announcement/i })
-  );
-  expect(tryoutHeading()).toBeInTheDocument();
-
-  fireEvent.keyDown(carousel, { key: 'ArrowLeft' });
-  expect(potluckHeading()).toBeInTheDocument();
-
-  fireEvent.touchStart(carousel, { touches: [{ clientX: 240 }] });
-  fireEvent.touchEnd(carousel, { changedTouches: [{ clientX: 120 }] });
-  expect(tryoutHeading()).toBeInTheDocument();
+  expect(
+    screen.queryByRole('button', { name: /show previous announcement/i })
+  ).not.toBeInTheDocument();
+  expect(
+    screen.queryByRole('button', { name: /show next announcement/i })
+  ).not.toBeInTheDocument();
 });

@@ -197,6 +197,22 @@ h1, h2, h3, h4, h5, h6 {
   transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
 }
 
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.hero-cta-secondary {
+  border-color: rgba(255, 255, 255, 0.75);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.hero-cta-secondary:hover {
+  border-color: var(--color-white);
+  background: rgba(255, 255, 255, 0.12);
+}
+
 .hero-cta:hover {
   border-color: var(--color-primary-hover);
   color: var(--color-white);
@@ -407,18 +423,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero-slide {
-    animation: none;
-  }
-
-  .hero-cta,
-  .hero-carousel-arrow,
-  .hero-carousel-dot {
-    transition: none;
-  }
-}
-
 .bg-red {
   background-color: var(--color-dark-maroon);
 }
@@ -515,14 +519,15 @@ h1, h2, h3, h4, h5, h6 {
    ========================= */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   will-change: opacity, transform;
 }
 
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+  will-change: auto;
 }
 
 .reveal.delay-1 {
@@ -535,6 +540,30 @@ h1, h2, h3, h4, h5, h6 {
 
 .reveal.delay-3 {
   transition-delay: 0.3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-slide {
+    animation: none;
+  }
+
+  .hero-cta,
+  .hero-carousel-arrow,
+  .hero-carousel-dot {
+    transition: none;
+  }
+
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
 }
 
 /* =========================
@@ -573,6 +602,44 @@ h1, h2, h3, h4, h5, h6 {
 .register-container {
   background-color: var(--color-primary);
   padding: 2rem;
+}
+
+.register-heading {
+  max-width: 820px;
+}
+
+.register-eyebrow {
+  margin-bottom: 0.35rem;
+  color: #ffb8b8;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.register-help,
+.registration-form-fallback {
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+}
+
+.register-container a {
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+.registration-form-frame {
+  width: min(100%, 820px);
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f3f0f7;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.35);
+}
+
+.registration-form-frame iframe {
+  display: block;
+  border: 0;
 }
 
 .form-label {

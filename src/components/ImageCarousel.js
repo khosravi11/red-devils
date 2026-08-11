@@ -30,11 +30,33 @@ const ImageCarousel = () => {
   const carouselRootRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() =>
+    typeof window !== "undefined" && typeof window.matchMedia === "function"
+      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      : false
+  );
   const touchStartXRef = useRef(null);
   const imageCount = IMAGES.length;
 
   useEffect(() => {
-    if (isPaused || imageCount < 2) {
+    if (typeof window.matchMedia !== "function") {
+      return undefined;
+    }
+
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const handleChange = (event) => setPrefersReducedMotion(event.matches);
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", handleChange);
+      return () => mediaQuery.removeEventListener("change", handleChange);
+    }
+
+    mediaQuery.addListener(handleChange);
+    return () => mediaQuery.removeListener(handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (isPaused || imageCount < 2 || prefersReducedMotion) {
       return undefined;
     }
 
@@ -45,7 +67,7 @@ const ImageCarousel = () => {
     return () => {
       window.clearInterval(intervalId);
     };
-  }, [imageCount, isPaused]);
+  }, [imageCount, isPaused, prefersReducedMotion]);
 
   const currentImage = IMAGES[activeIndex];
 
@@ -125,8 +147,11 @@ const ImageCarousel = () => {
   };
 
   return (
-    <section id="gallery" className="bg-black py-5 text-center">
+    <section id="gallery" className="bg-black py-5 text-center reveal">
       <div className="container">
+        <h2 className="section-title text-white mb-4">
+          The Red Devils in Action
+        </h2>
         <div
           ref={carouselRootRef}
           className="gallery-carousel mx-auto"
@@ -142,6 +167,7 @@ const ImageCarousel = () => {
             onKeyDown={handleKeyDown}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
+            role="region"
             aria-roledescription="carousel"
             aria-label="Red Devils photo gallery"
           >

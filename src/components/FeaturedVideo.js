@@ -5,7 +5,7 @@ const FEATURED_VIDEO_IMAGE = "/images/ktvu-screenshot.png";
 
 const FeaturedVideo = () => {
   return (
-    <section id="featured-video" className="featured-video-section py-5 reveal">
+    <section id="about" className="featured-video-section py-5 reveal">
       <div className="container">
         <div className="featured-video-card row g-4 align-items-center">
           <div className="col-lg-6">
@@ -27,8 +27,8 @@ const FeaturedVideo = () => {
           </div>
 
           <div className="col-lg-6 text-white">
-            <p className="featured-video-eyebrow mb-2">Featured Media</p>
-            <h2 className="section-title mb-3">Red Devils on KTVU</h2>
+            <p className="featured-video-eyebrow mb-2">Our Story</p>
+            <h2 className="section-title mb-3">See the Red Devils on KTVU</h2>
             <p className="featured-video-copy mb-3">
               Watch the Berkeley Red Devils featured on KTVU&apos;s <strong>Like It Or Not</strong>.
             </p>

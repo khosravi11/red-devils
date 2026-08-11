@@ -2,9 +2,9 @@ import React from 'react';
 
 const AboutUs = () => {
   return (
-    <section id="about" className="about-us-container py-5 bg-light reveal">
+    <section className="about-us-container py-5 bg-light reveal">
       <div className="container">
-        <h2 className="section-title text-center mb-4">About the Red Devils</h2>
+        <h2 className="section-title text-center mb-4">Our Program</h2>
         <div className="row align-items-center">
           {/* Image Section */}
           <div className="col-md-6 d-flex justify-content-center">
