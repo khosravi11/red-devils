@@ -3,14 +3,17 @@ import React, { useEffect, useRef, useState } from "react";
 const ANNOUNCEMENTS = [
   {
     eyebrow: "2026–27 Season",
-    title: "Team Tryouts",
-    date: "August 24 • 6:30–8:00 PM",
-    location: "Willard Middle School • Berkeley, CA",
+    title: "Join the Team",
+    date: "Developmental Teams • 9U–14U",
+    location: "2 Practices Weekly • 2 Tournaments Monthly",
     description:
-      "Developmental and competitive teams for players 9U–14U. Scan the flyer to register for the $25 tryout.",
-    ctaLabel: "View Tryout Flyer",
-    flyer: "/images/hero/team-tryouts-2026-27.jpg",
-    alt: "Berkeley Red Devils 2026–27 team tryouts flyer",
+      "Build skills, basketball IQ, and confidence through team play and competition. Check out a practice, meet the coaches and team, and see if BRD is the right fit.",
+    primaryCtaLabel: "Call Coach Scott",
+    primaryCtaHref: "tel:+15103658568",
+    ctaLabel: "View Join the Team Flyer",
+    flyer: "/images/hero/join-the-team-2026-27.jpg",
+    flyerHref: "/pdf/berkeley-red-devils-join-the-team-2026-27.pdf",
+    alt: "Berkeley Red Devils 2026–27 Join the Team flyer for developmental teams 9U through 14U",
   },
 ];
 
@@ -25,6 +28,7 @@ const Hero = () => {
   const touchStartXRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isAutoplayStopped, setIsAutoplayStopped] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(() =>
     typeof window !== "undefined" && typeof window.matchMedia === "function"
       ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -49,7 +53,12 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    if (ANNOUNCEMENTS.length < 2 || isPaused || prefersReducedMotion) {
+    if (
+      ANNOUNCEMENTS.length < 2 ||
+      isPaused ||
+      isAutoplayStopped ||
+      prefersReducedMotion
+    ) {
       return undefined;
     }
 
@@ -58,7 +67,7 @@ const Hero = () => {
     }, AUTOPLAY_DELAY_MS);
 
     return () => window.clearInterval(intervalId);
-  }, [isPaused, prefersReducedMotion]);
+  }, [isPaused, isAutoplayStopped, prefersReducedMotion]);
 
   const goToPrevious = () => {
     setActiveIndex((current) => wrapIndex(current - 1));
@@ -143,13 +152,24 @@ const Hero = () => {
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
+        <div
+          className="visually-hidden"
+          aria-live={
+            isPaused || isAutoplayStopped || prefersReducedMotion
+              ? "polite"
+              : "off"
+          }
+          aria-atomic="true"
+        >
+          {`${announcement.title}. Slide ${activeIndex + 1} of ${ANNOUNCEMENTS.length}.`}
+        </div>
+
         <article
           key={announcement.flyer}
           className="hero-slide"
           role="group"
           aria-roledescription="slide"
           aria-label={`${activeIndex + 1} of ${ANNOUNCEMENTS.length}`}
-          aria-live={isPaused ? "polite" : "off"}
         >
           <div
             className="hero-slide-backdrop"
@@ -170,12 +190,12 @@ const Hero = () => {
               <p className="hero-description">{announcement.description}</p>
 
               <div className="hero-actions">
-                <a className="hero-cta" href="#register">
-                  Register for Tryouts
+                <a className="hero-cta" href={announcement.primaryCtaHref}>
+                  {announcement.primaryCtaLabel}
                 </a>
                 <a
                   className="hero-cta hero-cta-secondary"
-                  href={announcement.flyer}
+                  href={announcement.flyerHref ?? announcement.flyer}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${announcement.ctaLabel} (opens in a new tab)`}
@@ -254,6 +274,32 @@ const Hero = () => {
               <path d="m9 18 6-6-6-6" />
             </svg>
           </button>
+
+          {!prefersReducedMotion && (
+            <button
+              className="hero-carousel-arrow"
+              type="button"
+              onClick={() => setIsAutoplayStopped((current) => !current)}
+              aria-label={
+                isAutoplayStopped
+                  ? "Resume automatic announcements"
+                  : "Pause automatic announcements"
+              }
+            >
+              <svg
+                className="hero-arrow-icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+              >
+                {isAutoplayStopped ? (
+                  <path d="m9 7 8 5-8 5Z" />
+                ) : (
+                  <path d="M9 7v10M15 7v10" />
+                )}
+              </svg>
+            </button>
+          )}
           </div>
         )}
       </div>

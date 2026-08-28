@@ -7,10 +7,10 @@ test('renders key homepage content', () => {
     screen.getByRole('heading', { name: /Berkeley RED DEVILS/i, level: 1 })
   ).toBeInTheDocument();
   expect(
-    screen.getByRole('heading', { name: /^team tryouts$/i, level: 2 })
+    screen.getByRole('heading', { name: /^join the team$/i, level: 2 })
   ).toBeInTheDocument();
   expect(
-    screen.queryByRole('heading', { name: /family potluck/i, level: 2 })
+    screen.queryByRole('heading', { name: /^team tryouts$/i, level: 2 })
   ).not.toBeInTheDocument();
   expect(
     screen.getByRole('heading', { name: /register for team tryouts/i, level: 2 })
@@ -62,22 +62,43 @@ test('embeds the tryout registration form with a direct fallback link', () => {
   expect(fallbackLink).toHaveAttribute('rel', 'noopener noreferrer');
 });
 
-test('opens the tryout flyer in a new tab without redundant carousel controls', () => {
+test('opens the Join the Team flyer and shows its primary action', () => {
+  render(<App />);
+  const carousel = screen.getByRole('region', {
+    name: /berkeley red devils announcements/i,
+  });
+
+  const joinTeamLink = within(carousel).getByRole('link', {
+    name: /view join the team flyer \(opens in a new tab\)/i,
+  });
+  expect(joinTeamLink).toHaveAttribute(
+    'href',
+    '/pdf/berkeley-red-devils-join-the-team-2026-27.pdf'
+  );
+  expect(joinTeamLink).toHaveAttribute('target', '_blank');
+  expect(joinTeamLink).toHaveAttribute('rel', 'noopener noreferrer');
+  expect(
+    within(carousel).getByRole('link', { name: /call coach scott/i })
+  ).toHaveAttribute('href', 'tel:+15103658568');
+});
+
+test('does not show carousel controls for the single announcement', () => {
   render(<App />);
 
-  const tryoutLink = screen.getByRole('link', {
-    name: /view tryout flyer \(opens in a new tab\)/i,
+  const carousel = screen.getByRole('region', {
+    name: /berkeley red devils announcements/i,
   });
-  expect(tryoutLink).toHaveAttribute(
-    'href',
-    '/images/hero/team-tryouts-2026-27.jpg'
+  const slideStatus = within(carousel).getByText(
+    /join the team\. slide 1 of 1\./i
   );
-  expect(tryoutLink).toHaveAttribute('target', '_blank');
-  expect(tryoutLink).toHaveAttribute('rel', 'noopener noreferrer');
+  expect(slideStatus).toHaveAttribute('aria-live', 'off');
   expect(
     screen.queryByRole('button', { name: /show previous announcement/i })
   ).not.toBeInTheDocument();
   expect(
     screen.queryByRole('button', { name: /show next announcement/i })
+  ).not.toBeInTheDocument();
+  expect(
+    screen.queryByRole('button', { name: /pause automatic announcements/i })
   ).not.toBeInTheDocument();
 });
