@@ -1,21 +1,24 @@
 import React from "react";
+import { sponsors } from "../data/sponsors";
+import SponsorLogo from "./SponsorLogo";
+
+const partners = [
+  ...sponsors,
+  { id: "evolve", name: "Evolve", logo: "/images/EvolveLogo.png" },
+  { id: "adidas", name: "Adidas", logo: "/images/AdidasLogo.png" },
+];
 
 const Affiliates = () => (
-  <section id="affiliates" className="py-5 bg-white reveal">
+  <section id="affiliates" className="py-5 bg-white reveal" aria-labelledby="partners-title">
     <div className="container text-center">
-      <h2 className="section-title text-center mb-4">Partners</h2>
-      <div className="row justify-content-center align-items-center">
-        {["EvolveLogo.png", "AdidasLogo.png"].map((logo) => (
-          <div key={logo} className="col-6 col-md-4 d-flex justify-content-center">
-            <img
-              src={`/images/${logo}`}
-              className="img-fluid rounded affiliate-logo"
-              alt={`${logo.split(".")[0]} Logo`}
-              style={{ maxWidth: "180px", transition: "0.3s ease-in-out" }}
-            />
-          </div>
+      <h2 id="partners-title" className="section-title text-center mb-4">Partners</h2>
+      <ul className="partners-list">
+        {partners.map((partner) => (
+          <li key={partner.id}>
+            <SponsorLogo sponsor={partner} />
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   </section>
 );

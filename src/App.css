@@ -71,6 +71,225 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* =========================
+   Sponsors & Partners
+   ========================= */
+.sponsor-strip {
+  background: var(--color-white);
+  border-bottom: 1px solid #e8e5e5;
+  padding: 0.5rem 0;
+}
+
+.sponsor-strip-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.sponsor-strip-title {
+  margin: 0;
+  color: var(--color-dark-maroon);
+  font-family: Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.sponsor-strip-list,
+.partners-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.sponsor-strip-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.sponsor-strip-list li,
+.partners-list li {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.sponsor-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  max-width: 100%;
+  height: 100px;
+  overflow: hidden;
+  background: var(--color-white);
+}
+
+.sponsor-strip .sponsor-mark {
+  width: 180px;
+  height: 72px;
+}
+
+.sponsor-logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Frame the original square artwork around its centered wordmark. */
+.sponsor-mark--pizza-gallery .sponsor-logo {
+  object-fit: cover;
+  object-position: center;
+}
+
+.sponsor-link {
+  display: inline-flex;
+  max-width: 100%;
+  border-radius: 4px;
+}
+
+.sponsor-link:hover {
+  outline: 1px solid #b8b8b8;
+  outline-offset: 4px;
+}
+
+.sponsor-link:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 4px;
+}
+
+.partners-list {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* =========================
+   Media Day
+   ========================= */
+.media-day-section {
+  background: #f7f4f1;
+}
+
+.media-day-card {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid #e8e0db;
+  border-radius: 18px;
+  background: var(--color-white);
+}
+
+.media-day-date {
+  display: flex;
+  flex: 0 0 150px;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 0.75rem;
+  border-radius: 10px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  text-transform: uppercase;
+}
+
+.media-day-date span {
+  font-family: Arial, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.media-day-date strong {
+  font-size: 4.5rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.media-day-content {
+  min-width: 0;
+}
+
+.media-day-eyebrow,
+.media-day-details,
+.media-day-copy,
+.media-day-note {
+  font-family: Arial, sans-serif;
+}
+
+.media-day-eyebrow {
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.media-day-heading {
+  margin-bottom: 1rem;
+  color: var(--color-dark-maroon);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+}
+
+.media-day-details {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+  color: #242424;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.media-day-copy {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.media-day-note {
+  margin: 0;
+  color: var(--color-dark-maroon);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 767.98px) {
+  .partners-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sponsor-strip-inner {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .sponsor-strip-list {
+    width: min(100%, 400px);
+    gap: 1rem;
+  }
+
+  .sponsor-strip-title {
+    padding-top: 0.5rem;
+  }
+
+  .media-day-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .media-day-date {
+    flex: none;
+    flex-direction: row;
+    gap: 0.75rem;
+    padding: 0.65rem 1rem;
+  }
+
+  .media-day-date strong {
+    font-size: 1.75rem;
+  }
+}
+
+/* =========================
    Hero Section
    ========================= */
 .hero-announcements {

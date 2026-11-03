@@ -13,6 +13,8 @@ import Footer from './components/Footer';
 import CallCoachButton from './components/Call';
 import Coaches from './components/Coaches';
 import ImageCarousel from './components/ImageCarousel';
+import SponsorStrip from './components/SponsorStrip';
+import MediaDay from './components/MediaDay';
 function App() {
   useEffect(() => {
     const elements = document.querySelectorAll('.reveal');
@@ -40,7 +42,9 @@ function App() {
   return (
     <div>
       <Nav />
+      <SponsorStrip />
       <Hero />
+      <MediaDay />
       <FeaturedVideo />
       <About />
       <ImageCarousel/>
