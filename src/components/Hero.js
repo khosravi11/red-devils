@@ -135,8 +135,6 @@ const Hero = () => {
 
   return (
     <section id="home" className="hero-announcements">
-      <h1 className="visually-hidden">Berkeley Red Devils</h1>
-
       <div
         ref={carouselRef}
         className="hero-carousel"
@@ -179,6 +177,7 @@ const Hero = () => {
 
           <div className="hero-slide-inner">
             <div className="hero-slide-copy">
+              <h1 className="hero-program-title">Berkeley Red Devils AAU Basketball</h1>
               <p className="hero-eyebrow">{announcement.eyebrow}</p>
               <h2 className="hero-heading">{announcement.title}</h2>
 

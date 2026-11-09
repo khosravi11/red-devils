@@ -1,0 +1,24 @@
+{
+  "tool": "Built-in image_gen",
+  "reference": "Berkeley Red Devils logo sheet supplied by the user on November 5, 2026",
+  "wordmark": {
+    "asset": "public/images/berkeley-red-devils-wordmark.png",
+    "prompt": "Edit target: the supplied Berkeley Red Devils logo sheet. Extract ONLY ONE complete horizontal BERKELEY / RED DEVILS wordmark from the top left of this sheet as a tightly framed wide logo with a transparent background. Preserve the original exact artwork, the red horned B emblem, black ERKELEY lettering, red RED DEVILS subtitle, black outlines, typography, proportions, and relative placement. This is faithful logo extraction for the existing team's website, not a redesign. Do not create new lettering, embellishments, shadows, or multiple copies. Output a landscape image closely framed around the original horizontal logo, with about 3% clear padding and real alpha transparency."
+  },
+  "icon": {
+    "assets": [
+      "public/favicon.ico",
+      "public/images/icons/favicon-32.png",
+      "public/images/icons/apple-touch-icon.png",
+      "public/images/icons/icon-192.png",
+      "public/images/icons/icon-512.png"
+    ],
+    "prompt": "Extract just ONE of the standalone red horned B emblems from the supplied Berkeley Red Devils brand sheet into a square app icon. Preserve the original exact flat red fill (#d02027 approximately), black outline, horn shape, B silhouette and white counter. Do not redesign, use gradients, shadows, texture, 3D, or add lettering. Use a clean solid white square background. Center the emblem with 12% clear padding above and below, maintaining the original emblem aspect ratio. Output a 512 by 512 pixel icon suitable for the website favicon, home-screen and mobile sharing identity."
+  },
+  "socialCard": {
+    "asset": "public/images/berkeley-red-devils-social.png",
+    "source": "tools/social-card.html",
+    "dimensions": "1200x630",
+    "method": "Browser rendering of the HTML/CSS artwork using the new wordmark"
+  }
+}

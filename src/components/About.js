@@ -12,7 +12,9 @@ const AboutUs = () => {
               <img
                 className="img-fluid rounded-3 shadow-lg"
                 src="/images/CoachScott.jpg"
-                alt="Coach Antonio Scott"
+                alt="Berkeley Red Devils AAU basketball program director Coach Antonio Scott"
+                loading="lazy"
+                decoding="async"
                 style={{ maxHeight: "450px", objectFit: "cover" }}
               />
               <div
@@ -27,9 +29,10 @@ const AboutUs = () => {
           {/* Text Section */}
           <div className="col-md-6">
             <p className="section-text fs-5">
-              The <strong>Berkeley Red Devils</strong> are more than just a basketball team - we are
-              a <strong>youth development program</strong> dedicated to teaching fundamentals,
-              building confidence, and fostering leadership for players ages 9-14.
+              The <strong>Berkeley Red Devils</strong> are an <strong>AAU youth basketball
+              program in Berkeley, California</strong>, serving families across the Bay Area.
+              Our developmental teams for players ages 9–14 teach basketball fundamentals,
+              build confidence, and develop leadership through practices and tournament play.
             </p>
             <div className="bg-secondary rounded-3 shadow-sm p-3 mt-3">
               <h3 className="fw-bold text-white">What Families Can Expect</h3>

@@ -8,9 +8,11 @@ const NavBar = () => {
       <div className="container flex-column flex-lg-row align-items-center">
         <a className="navbar-brand m-0 p-0" href="#home">
           <img
-            src="/images/RedDevilsLogo.png"
-            alt="Red Devils Logo"
-            className="d-inline-block align-top logo py-2"
+            src="/images/berkeley-red-devils-wordmark.png"
+            alt="Berkeley Red Devils home"
+            width="720"
+            height="240"
+            className="d-inline-block align-top logo"
           />
         </a>
         <button

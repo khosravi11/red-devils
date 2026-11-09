@@ -14,8 +14,8 @@ const Register = () => {
           <p className="register-eyebrow">2026–27 Season</p>
           <h2 className="section-title mb-3">Register for Team Tryouts</h2>
           <p className="mb-3">
-            Complete the form below to register for Berkeley Red Devils team
-            tryouts. The tryout fee is $25.
+            Register for Berkeley Red Devils AAU basketball tryouts for players
+            ages 9–14 in Berkeley and the Bay Area. The tryout fee is $25.
           </p>
           <p className="register-help mb-4">
             Questions? Call Coach Scott at{" "}
@@ -27,6 +27,7 @@ const Register = () => {
           <iframe
             src={`${FORM_URL}?embedded=true`}
             title="Berkeley Red Devils team tryout registration form"
+            loading="lazy"
             width="100%"
             height="3215"
             frameBorder="0"

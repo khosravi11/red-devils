@@ -66,8 +66,26 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .logo {
-  width: 135px;
+  width: 220px;
+  max-width: 75vw;
   height: auto;
+  padding: 6px;
+  margin: 0.5rem 0;
+  border-radius: 6px;
+  background: var(--color-white);
+}
+
+.navbar-brand {
+  flex-shrink: 0;
+}
+
+.hero-program-title {
+  margin: 0 0 0.75rem;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
 }
 
 /* =========================

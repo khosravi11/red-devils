@@ -43,14 +43,16 @@ function App() {
     <div>
       <Nav />
       <SponsorStrip />
-      <Hero />
-      <MediaDay />
-      <FeaturedVideo />
-      <About />
-      <ImageCarousel/>
-      <Coaches/>
-      <Register />
-      <Affiliates />  
+      <main>
+        <Hero />
+        <MediaDay />
+        <FeaturedVideo />
+        <About />
+        <ImageCarousel/>
+        <Coaches/>
+        <Register />
+        <Affiliates />
+      </main>
       <Footer />
       <CallCoachButton/>
     </div>

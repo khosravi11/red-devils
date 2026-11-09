@@ -64,7 +64,13 @@ The site runs locally at `http://localhost:3000`.
 
 - `npm start` runs the development server
 - `npm test` runs the test suite
-- `npm run build` creates a production build in `build/`
+- `npm run build` creates a production build in `build/` and prerenders the homepage into HTML for search engines and visitors without JavaScript. Deploy the complete `build/` folder as usual.
+
+## Search and sharing
+
+The homepage includes a canonical URL, Open Graph and Twitter card metadata, a 1200 × 630 sharing image, branded mobile icons, and SportsOrganization/WebSite structured data. Program copy describes the Berkeley and Bay Area AAU basketball program. `public/sitemap.xml` lists the canonical homepage and is referenced in `public/robots.txt`.
+
+Keep `public/index.html`, the manifest, and the sitemap aligned with the production domain. Update descriptions and structured data when the program's details change. After deployment, submit `https://reddevilsaau.com/sitemap.xml` in Google Search Console and request a homepage recrawl. Sharing services may retain an older preview until their cache refreshes.
 
 ## Challenges and Decisions
 
